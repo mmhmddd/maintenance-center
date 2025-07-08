@@ -1,0 +1,75 @@
+#main-nav {
+    background-color: var(--white);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: var(--font-family);
+    direction: rtl;
+    padding: 0.5rem 1rem;
+    transition: background-color 0.3s ease;
+}
+
+#main-nav.scrolled {
+    background-color: var(--white);
+    opacity: 0.95;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    font-size: var(--font-size-large);
+    color: var(--black);
+}
+
+.navbar-brand img {
+    max-height: 40px;
+    margin-left: 0.5rem;
+}
+
+.nav-link {
+    color: var(--black);
+    font-size: var(--font-size-base);
+    padding: 0.5rem 1rem;
+    margin: 0 0.5rem;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--primary-blue); /* الأزرق الجديد */
+    background-color: var(--blue-light); /* الأزرق الفاتح الجديد */
+    border-radius: 5px;
+}
+
+.btn-primary {
+    background-color: var(--primary-blue); /* الأزرق الجديد */
+    border-color: var(--primary-blue);
+    color: var(--white);
+    padding: 0.5rem 1.5rem;
+    font-size: var(--font-size-base);
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--blue-dark); /* الأزرق الداكن الجديد */
+    border-color: var(--blue-dark);
+}
+
+.navbar-toggler {
+    border-color: var(--primary-blue);
+}
+
+@media (max-width: 991.98px) {
+    .navbar-collapse {
+        background-color: var(--white);
+        padding: 1rem;
+        border-radius: 5px;
+    }
+    .nav-link {
+        text-align: right;
+        margin: 0.5rem 0;
+    }
+    .btn-primary {
+        margin: 1rem 0;
+        width: 100%;
+        text-align: center;
+    }
+}

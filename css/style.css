@@ -1,0 +1,32 @@
+:root {
+    /* Primary Colors */
+    --primary-blue: #3b82f6; /* أزرق متوسط زاهي */
+    --white: #ffffff; /* أبيض (كما هو) */
+    --yellow: #ffc107; /* أصفر (كما هو) */
+    --black: #000000; /* أسود (كما هو) */
+
+    /* Secondary Colors */
+    --gray-dark: #333333; /* رمادي داكن */
+    --gray-light: #f8f9fa; /* رمادي فاتح */
+    --blue-dark: #1e3a8a; /* أزرق داكن أعمق */
+    --blue-light: #dbeafe; /* أزرق فاتح ناعم */
+
+    /* Accent Colors */
+    --success-green: #28a745; /* أخضر للإشعارات الناجحة */
+    --error-red: #dc3545; /* أحمر للإشعارات الخاطئة */
+    --info-teal: #17a2b8; /* أزرق مخضر للمعلومات */
+
+    /* Typography and Layout */
+    --font-family: 'Tajawal', sans-serif;
+    --font-size-base: 1rem;
+    --font-size-large: 1.25rem;
+    --font-size-small: 0.875rem;
+}
+
+body {
+    font-family: var(--font-family);
+    direction: rtl;
+    text-align: right;
+    background-color: var(--white);
+    color: var(--black);
+}
