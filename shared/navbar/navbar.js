@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Highlight active link
-    const navLinks = document.querySelectorAll('.nav-link');
+    const navLinks = document.querySelectorAll('.nav-link, .dropdown-item');
     const currentPath = window.location.pathname;
 
     navLinks.forEach(link => {
@@ -20,5 +20,18 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             navbar.classList.remove('scrolled');
         }
+    });
+
+    // Handle dropdown submenu hover
+    const dropdowns = document.querySelectorAll('.dropdown-submenu');
+    dropdowns.forEach(dropdown => {
+        dropdown.addEventListener('mouseenter', () => {
+            const menu = dropdown.querySelector('.dropdown-menu');
+            menu.style.display = 'block';
+        });
+        dropdown.addEventListener('mouseleave', () => {
+            const menu = dropdown.querySelector('.dropdown-menu');
+            menu.style.display = 'none';
+        });
     });
 });

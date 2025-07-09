@@ -3,14 +3,19 @@
         <!-- Right: Logo and Name -->
         <div class="d-flex align-items-center">
             <a class="navbar-brand" href="../../index.html">
-                <img src="../../assets/images/logo.png" alt="دليل الأمان للصيانة" width="50">
-                <span class="ms-2">دليل الأمان للصيانة</span>
+                <img src="../../assets/images/home/logo.png" alt="دليل الأمان للصيانة" width="50">
+                <span class="ms-2 navbar-brand-text">دليل الأمان للصيانة</span>
             </a>
         </div>
 
-        <!-- Middle: Navigation Links -->
-        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-            <ul class="navbar-nav">
+        <!-- Toggler for Mobile -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Middle: Navigation Links and Booking Button -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="../../index.html">الرئيسية</a>
                 </li>
@@ -20,23 +25,32 @@
                 <li class="nav-item">
                     <a class="nav-link" href="../pages/projects.html">أعمالنا</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../pages/services.html">خدماتنا</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="../pages/services.html" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        خدمات الصيانة
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="servicesDropdown">
+                        <li class="dropdown-submenu">
+                            <a class="dropdown-item dropdown-toggle" href="#">صيانة مكيف</a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="../pages/services.html#window-ac">شباك</a></li>
+                                <li><a class="dropdown-item" href="../pages/services.html#split-ac">سبليت</a></li>
+                                <li><a class="dropdown-item" href="../pages/services.html#cabinet-ac">مكيف دولابي</a></li>
+                            </ul>
+                        </li>
+                        <li><a class="dropdown-item" href="../pages/services.html#fridge">صيانة ثلاجة</a></li>
+                        <li><a class="dropdown-item" href="../pages/services.html#freezer">صيانة فريزر</a></li>
+                        <li><a class="dropdown-item" href="../pages/services.html#washer">صيانة غسالة</a></li>
+                    </ul>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="../pages/contact.html">تواصل معنا</a>
                 </li>
             </ul>
+            <!-- Booking Button -->
+            <div class="booking-button">
+                <a href="../pages/booking.html" class="btn btn-book">احجز الآن</a>
+            </div>
         </div>
-
-        <!-- Left: Booking Button -->
-        <div>
-            <a href="../pages/booking.html" class="btn btn-book">احجز الآن</a>
-        </div>
-
-        <!-- Toggler for Mobile -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
     </div>
 </nav>

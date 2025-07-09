@@ -6,31 +6,247 @@
     <title>دليل الأمان للصيانة</title>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="ixarstylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link href="/css/style.css" rel="stylesheet">
     <link href="/shared/navbar/navbar.css" rel="stylesheet">
     <link rel="stylesheet" href="/shared/footer/footer.css">
 </head>
 <body>
     <!-- Navbar Placeholder -->
-    <!-- Navbar Placeholder -->
     <div id="navbar-placeholder"></div>
+    <main>
+        <!-- Hero Section with Carousel -->
+        <section class="hero-section">
+            <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                </div>
+                <div class="carousel-inner">
+                    <!-- Slide 1: AC Maintenance -->
+                    <div class="carousel-item active">
+                        <img src="assets/images/home/ac-repair.webp" class="d-block w-100" alt="صيانة مكيف" loading="lazy">
+                        <div class="carousel-caption d-flex flex-column justify-content-center h-100">
+                            <div class="overlay p-4 rounded animate__animated animate__fadeIn">
+                                <h1 class="display-3 text-white fw-bold">صيانة مكيف</h1>
+                                <p class="lead text-white">صيانة شاملة لجميع أنواع المكيفات: شباك، سبليت، دولابي.</p>
+                                <a href="pages/services.html#window-ac" class="btn btn-primary btn-lg mt-3">التفاصيل</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 2: Fridge Maintenance -->
+                    <div class="carousel-item">
+                        <img src="assets/images/home/fridge.webp" class="d-block w-100" alt="صيانة ثلاجة" loading="lazy">
+                        <div class="carousel-caption d-flex flex-column justify-content-center h-100">
+                            <div class="overlay p-4 rounded animate__animated animate__fadeIn">
+                                <h1 class="display-3 text-white fw-bold">صيانة ثلاجة</h1>
+                                <p class="lead text-white">إصلاح وصيانة الثلاجات بكفاءة عالية.</p>
+                                <a href="pages/services.html#fridge" class="btn btn-primary btn-lg mt-3">التفاصيل</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 3: Freezer Maintenance -->
+                    <div class="carousel-item">
+                        <img src="assets/images/home/freezer.webp" class="d-block w-100" alt="صيانة فريزر" loading="lazy">
+                        <div class="carousel-caption d-flex flex-column justify-content-center h-100">
+                            <div class="overlay p-4 rounded animate__animated animate__fadeIn">
+                                <h1 class="display-3 text-white fw-bold">صيانة فريزر</h1>
+                                <p class="lead text-white">صيانة متخصصة للفريزرات بجميع أنواعها.</p>
+                                <a href="pages/services.html#freezer" class="btn btn-primary btn-lg mt-3">التفاصيل</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 4: Washer Maintenance -->
+                    <div class="carousel-item">
+                        <img src="assets/images/home/washer.webp" class="d-block w-100" alt="صيانة غسالة" loading="lazy">
+                        <div class="carousel-caption d-flex flex-column justify-content-center h-100">
+                            <div class="overlay p-4 rounded animate__animated animate__fadeIn">
+                                <h1 class="display-3 text-white fw-bold">صيانة غسالة</h1>
+                                <p class="lead text-white">خدمات صيانة للغسالات بسرعة ودقة.</p>
+                                <a href="pages/services.html#washer" class="btn btn-primary btn-lg mt-3">التفاصيل</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">السابق</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">التالي</span>
+                </button>
+            </div>
+        </section>
 
-    <!-- Hero Section -->
-    <section class="hero-section text-center py-5" style="background: url('assets/images/banner.jpg') no-repeat center; background-size: cover;">
+
+        <!-- About Section with Cards -->
+        <section class="about-section py-5">
+            <div class="container">
+                <div class="section-title text-center mb-5 animate__animated animate__fadeInDown">
+                    <h1 class="display-4 fw-bold">صيانة الأجهزة المنزلية</h1>
+                    <div class="title-underline"></div>
+                    <p class="lead mt-3">صيانة الأجهزة المنزلية والكهربائية بجودة عالية. نحن رواد في المجال مع فنيين ذوي خبرة تزيد عن 18 عامًا، نستخدم أحدث التقنيات لصيانة الثلاجات، المكيفات، الغسالات، الميكروويف وغيرها، مع ضمان رضا العملاء وخدمة سريعة تصلك أينما كنت.</p>
+                </div>
+                
+                <div class="row g-0">
+                    <!-- Card 1: من نحن؟ -->
+                    <div class="col-md-4 right-card about-card">
+                        <div class="card h-100 border-0 shadow-sm about-card animate__animated animate__fadeInLeft">
+                            <div class="card-body text-center p-4">
+                                <i class="bi bi-tools icon-accent mb-3"></i>
+                                <h2 class="card-title fw-bold mb-3">من نحن؟</h2>
+                                <p class="card-text">تعد شركة الأمان من الشركات الرائدة في مجال صيانة الأجهزة الكهربائية بالمدينة، بخبرة تمتد لأكثر من 18 عامًا في تقديم خدمات الصيانة والإصلاح لكافة أنواع وماركات الأجهزة المنزلية، بما في ذلك:
+                                الثلاجات – المكيفات – الغسالات – الفريزر – السخانات – البوتاجازات.
+                                نحن نحرص على تقديم خدمة سريعة وموثوقة على يد فريق متخصص من الفنيين، مع ضمان الجودة وقطع الغيار الأصلية.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 2: أهدافنا! (Taller) -->
+                    <div class="col-md-4 about-card">
+                        <div class="card border-0 shadow about-card taller-card animate__animated animate__fadeInUp">
+                            <img src="assets/images/home/about-image.png" class="card-img-top" alt="أهدافنا" loading="lazy">
+                            <div class="card-body text-center p-4">
+                                <i class="bi bi-bullseye icon-accent mb-3"></i>
+                                <h2 class="card-title fw-bold mb-3">أهدافنا!</h2>
+                                <p class="card-text">نسعى لتقديم خدمات صيانة متميزة بأعلى معايير الجودة، مع التركيز على رضا العملاء وتطوير حلول مبتكرة لصيانة الأجهزة المنزلية.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 3: مهمتنا! -->
+                    <div class="col-md-4 left-card about-card">
+                        <div class="card h-100 border-0 shadow-sm about-card animate__animated animate__fadeInRight">
+                            <div class="card-body text-center p-4">
+                                <i class="bi bi-gear-fill icon-accent mb-3"></i>
+                                <h2 class="card-title fw-bold mb-3">مهمتنا!</h2>
+                                <p class="card-text">
+                                نسعى في شركة الأمان لصيانة الأجهزة المنزلية إلى تقديم خدمات صيانة موثوقة وعالية الجودة، من خلال فريق عمل متخصص يمتلك خبرات واسعة في هذا المجال. نلتزم دائمًا بتلبية احتياجات عملائنا وتجاوز توقعاتهم عبر الاستجابة السريعة والدقة في العمل، مع اعتمادنا على أحدث أدوات الصيانة وقطع الغيار الأصلية. كما نعمل بشكل مستمر على تطوير وتحسين عملياتنا الداخلية لضمان تقديم أفضل تجربة ممكنة لكل عميل، مما يعزز من ثقة العملاء بنا ويجعلنا الخيار الأول في المدينة لصيانة الأجهزة المنزلية.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    <section class="about-us-slider" aria-label="علامات تجارية للأجهزة الإلكترونية">
         <div class="container">
-            <h1 class="display-4 text-white">دليل الأمان للصيانة</h1>
-            <p class="lead text-white">نقدم خدمات صيانة موثوقة بجودة عالية وسرعة في التنفيذ</p>
-            <a href="pages/booking.html" class="btn btn-primary btn-lg mt-3">احجز موعدك الآن</a>
+            <h2 class="section-title">علامات تجارية للأجهزة الإلكترونية</h2>
+            <div class="title-underline"></div>
+            <p class="intro-text">نفتخر بالتعامل مع أبرز العلامات التجارية للأجهزة الإلكترونية، مقدمين منتجات عالية الجودة تلبي احتياجات عملائنا في جميع أنحاء العالم.</p>
+            <div class="client-slider" id="clientSlider">
+                <div class="slider-track" id="sliderTrack" role="list">
+                    <div class="brand-item" tabindex="0" role="img" aria-label="kiriazi">
+                        <img src="/assets/images/home/kiriazi-logo.webp" alt="kiriazi" loading="lazy" draggable="false">
+                    </div>
+                    <div class="brand-item" tabindex="0" role="img" aria-label="carrier">
+                        <img src="/assets/images/home/carrier.webp" alt="carrier" loading="lazy" draggable="false">
+                    </div>
+                    <div class="brand-item" tabindex="0" role="img" aria-label="LG">
+                        <img src="/assets/images/home/lg-logo.webp" alt="LG loading="lazy" draggable="false">
+                    </div>
+                    <div class="brand-item" tabindex="0" role="img" aria-label="panasonic">
+                        <img src="/assets/images/home/panasonic.webp" alt="panasonic" loading="lazy" draggable="false">
+                    </div>
+                    <div class="brand-item" tabindex="0" role="img" aria-label="sharp">
+                        <img src="/assets/images/home/sharp.webp" alt="sharp " loading="lazy" draggable="false">
+                    </div>
+                    <div class="brand-item" tabindex="0" role="img" aria-label="media">
+                        <img src="/assets/images/home/media.webp" alt="media" loading="lazy" draggable="false">
+                    </div>
+                </div>
+            </div>
+            <div class="slider-controls d-none" >
+                <button class="control-btn play-pause-btn" id="playPauseBtn" title="إيقاف/تشغيل" aria-label="إيقاف/تشغيل التشغيل التلقائي">⏸️</button>
+                <button class="control-btn direction-btn" id="directionBtn" title="تغيير الاتجاه" aria-label="تغيير اتجاه التمرير">⬅️</button>
+            </div>
+            <div class="speed-control">
+                <label for="speedSlider" style="color: var(--primary-blue); font-weight: 600;">سرعة التمرير:</label>
+                <input type="range" id="speedSlider" class="speed-slider form-range" min="1" max="5" value="1" aria-label="التحكم في سرعة التمرير">
+                <span id="speedValue" style="color: var(--primary-blue); font-weight: 600;">بطيء جداً</span>
+            </div>
         </div>
     </section>
 
-    <!-- Add other sections here -->
 
+    <section class="service">
+       <div class="container">
+        <div class="section-title animate__animated animate__fadeInDown">
+            <h1 class="display-4 fw-bold">صيانة جميع الاجهزه المنزليه - خدماتنا المتكاملة</h1>
+            <h1>احجز موعد الان معنا</h1>
+            <div class="title-underline"></div>
+        </div>
+        <div class="row g-3">
+            <!-- Card 1: صيانة مكيف -->
+            <div class="col-md-3">
+                <div class="card service-card animate__animated animate__fadeInLeft">
+                    <img src="assets/images/home/ac-repair.webp" class="card-img-top" alt="صيانة مكيف" loading="lazy">
+                    <div class="card-body text-center p-4">
+                        <h2 class="card-title fw-bold">صيانة مكيف</h2>
+                        <p class="card-text">صيانة شاملة لجميع أنواع المكيفات: شباك، سبليت، دولابي.</p>
+                        <a href="booking.html?service=ac" class="btn btn-primary" aria-label="احجز صيانة المكيف الآن">احجز موعد للصيانه</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 2: صيانة ثلاجة -->
+            <div class="col-md-3">
+                <div class="card service-card animate__animated animate__fadeInUp">
+                    <img src="assets/images/home/fridge.webp" class="card-img-top" alt="صيانة ثلاجة" loading="lazy">
+                    <div class="card-body text-center p-4">
+                        <h2 class="card-title fw-bold">صيانة ثلاجة</h2>
+                        <p class="card-text">إصلاح وصيانة الثلاجات بكفاءة عالية باستخدام قطع غيار أصلية.</p>
+                        <a href="booking.html?service=fridge" class="btn btn-primary" aria-label="احجز صيانة الثلاجة الآن"> احجز موعد للصيانه</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 3: صيانة فريزر -->
+            <div class="col-md-3">
+                <div class="card service-card animate__animated animate__fadeInUp">
+                    <img src="assets/images/home/freezer.webp" class="card-img-top" alt="صيانة فريزر" loading="lazy">
+                    <div class="card-body text-center p-4">
+                        <h2 class="card-title fw-bold">صيانة فريزر</h2>
+                        <p class="card-text">صيانة متخصصة للفريزرات بجميع أنواعها لضمان التبريد المثالي.</p>
+                        <a href="booking.html?service=freezer" class="btn btn-primary" aria-label="احجز صيانة الفريزر الآن">احجز موعد للصيانه</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 4: صيانة غسالة -->
+            <div class="col-md-3">
+                <div class="card service-card animate__animated animate__fadeInRight">
+                    <img src="assets/images/home/washer.webp" class="card-img-top" alt="صيانة غسالة" loading="lazy">
+                    <div class="card-body text-center p-4">
+                        <h2 class="card-title fw-bold">صيانة غسالة</h2>
+                        <p class="card-text">خدمات صيانة للغسالات بسرعة ودقة لضمان الأداء العالي.</p>
+                        <a href="booking.html?service=washer" class="btn btn-primary" aria-label="احجز صيانة الغسالة الآن">احجز موعد للصيانه</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+
+        <div id="contact-placeholder"></div>
+
+
+    
+
+    <!-- Bootstrap JS and Popper.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+
+        
+    </main>
     <!-- Footer Placeholder -->
     <div id="footer-placeholder"></div>
 
     <!-- Add other sections here -->
-
+    <!-- Bootstrap JS and Popper.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/main.js"></script>
     <script src="/shared/navbar/navbar.js"></script>
@@ -48,6 +264,11 @@
             .then(response => response.text())
             .then(data => document.getElementById('footer-placeholder').innerHTML = data)
             .catch(error => console.error('Error loading footer:', error));
+        // Load contact
+        fetch('/shared/contact/contact.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('contact-placeholder').innerHTML = data)
+            .catch(error => console.error('Error loading contact:', error));
     </script>
 </body>
 </html>

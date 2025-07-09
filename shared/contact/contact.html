@@ -1,0 +1,533 @@
+```html
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تواصلوا معنا</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        /* Import Google Fonts for Tajawal */
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap');
+
+        :root {
+            /* Primary Colors */
+            --primary-blue: #007bff;
+            --white: #ffffff;
+            --yellow: #ffc107;
+            --black: #000000;
+            /* Secondary Colors */
+            --gray-dark: #333333;
+            --gray-light: #f8f9fa;
+            --blue-dark: #0056b3;
+            --blue-light: #e7f1ff;
+            /* Accent Colors */
+            --success-green: #28a745;
+            --error-red: #dc3545;
+            --info-teal: #17a2b8;
+            /* Typography and Layout */
+            --font-family: 'Tajawal', sans-serif;
+            --font-size-base: 1rem;
+            --font-size-large: 1.25rem;
+            --font-size-small: 0.875rem;
+        }
+
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family);
+            font-size: var(--font-size-base);
+            line-height: 1.6;
+            direction: rtl;
+            background-color: var(--gray-light);
+            color: var(--gray-dark);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 4rem 0;
+            background: linear-gradient(180deg, var(--white) 0%, var(--blue-light) 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Equal Height Row */
+        .row.equal-height {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .row.equal-height > div {
+            display: flex;
+            flex: 1;
+        }
+
+        /* Section Title */
+        .section-title {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .section-title h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 0.75rem;
+        }
+
+        .title-underline {
+            width: 100px;
+            height: 4px;
+            background: var(--yellow);
+            margin: 0 auto;
+            border-radius: 2px;
+        }
+
+        /* Form Container */
+        .form-container {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            flex: 1;
+        }
+
+        .form-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group label {
+            font-size: var(--font-size-small);
+            font-weight: 500;
+            color: var(--gray-dark);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .form-control,
+        .form-select {
+            width: 100%;
+            padding: 0.75rem;
+            font-size: var(--font-size-base);
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: var(--gray-light);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+            outline: none;
+        }
+
+        .form-control::placeholder {
+            color: #999;
+            opacity: 1;
+        }
+
+        /* Dropdown Option Spacing */
+        .form-select option {
+            padding: 0.75rem 1rem;
+        }
+
+        .invalid-feedback {
+            display: none;
+            font-size: var(--font-size-small);
+            color: var(--error-red);
+            margin-top: 0.25rem;
+        }
+
+        .form-control:invalid[required]:focus + .invalid-feedback,
+        .form-control:invalid[required] + .invalid-feedback {
+            display: block;
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            font-size: var(--font-size-base);
+            font-weight: 500;
+            text-align: center;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            border: none;
+            box-shadow: 0 2px 8px rgba(0, 123, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--blue-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 123, 255, 0.4);
+        }
+
+        .btn-whatsapp {
+            background-color: var(--success-green);
+            color: var(--white);
+            text-decoration: none;
+            box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.4);
+        }
+
+        /* Contact Info */
+        .contact-info {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .contact-info:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .contact-info h3 {
+            font-size: var(--font-size-large);
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 1.25rem;
+        }
+
+        .contact-details {
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-size: var(--font-size-base);
+        }
+
+        .contact-item i {
+            font-size: 1.25rem;
+            color: var(--primary-blue);
+            margin-left: 1rem;
+            width: 30px;
+            text-align: center;
+        }
+
+        /* Map Styling */
+        .map-container {
+            flex-grow: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+            height: 150px;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Social Links */
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            background-color: var(--gray-light);
+            color: var(--primary-blue);
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 1.25rem;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            transform: scale(1.1);
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--success-green);
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            display: none;
+            font-size: var(--font-size-base);
+            z-index: 1000;
+        }
+
+        .toast.show {
+            display: block;
+            animation: fadeInOut 2s ease-in-out;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateX(-50%) translateY(20px); }
+            10% { opacity: 1; transform: translateX(-50%) translateY(0); }
+            90% { opacity: 1; transform: translateX(-50%) translateY(0); }
+            100% { opacity: 0; transform: translateX(-50%) translateY(20px); }
+        }
+
+        /* Animations */
+        .animate__animated {
+            --animate-duration: 0.8s;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 991.98px) {
+            .contact-section {
+                padding: 3rem 0;
+            }
+
+            .section-title h1 {
+                font-size: 2.2rem;
+            }
+
+            .form-container,
+            .contact-info {
+                margin-bottom: 1.5rem;
+            }
+
+            .map-container {
+                height: 120px;
+            }
+        }
+
+        @media (max-width: 767.98px) {
+            .section-title h1 {
+                font-size: 2rem;
+            }
+
+            .form-container,
+            .contact-info {
+                padding: 1.25rem;
+            }
+
+            .btn {
+                width: 100%;
+                padding: 0.75rem;
+            }
+
+            .row.equal-height {
+                flex-direction: column;
+            }
+
+            .map-container {
+                height: 100px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .container {
+                padding: 0 0.75rem;
+            }
+
+            .section-title h1 {
+                font-size: 1.75rem;
+            }
+
+            .form-container,
+            .contact-info {
+                padding: 1rem;
+            }
+
+            .social-links a {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="contact-section">
+        <div class="container">
+            <div class="section-title animate__animated animate__fadeInDown">
+                <h1>تواصلوا معنا</h1>
+                <div class="title-underline"></div>
+            </div>
+            <div class="row equal-height">
+                <!-- Form Part -->
+                <div class="col-md-6">
+                    <div class="form-container animate__animated animate__fadeInLeft">
+                        <form id="contactForm" novalidate>
+                            <div class="form-group">
+                                <label for="name">الاسم <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="name" placeholder="أدخل اسمك" required aria-describedby="nameFeedback">
+                                <div id="nameFeedback" class="invalid-feedback">يرجى إدخال الاسم</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="address">العنوان <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="address" placeholder="أدخل عنوانك" required aria-describedby="addressFeedback">
+                                <div id="addressFeedback" class="invalid-feedback">يرجى إدخال العنوان</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="problem">وصف المشكلة <span class="text-danger">*</span></label>
+                                <textarea class="form-control" id="problem" rows="4" placeholder="اكتب وصف المشكلة" required aria-describedby="problemFeedback"></textarea>
+                                <div id="problemFeedback" class="invalid-feedback">يرجى وصف المشكلة</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="deviceType">نوع الجهاز (اختياري)</label>
+                                <select class="form-select" id="deviceType" aria-label="نوع الجهاز">
+                                    <option value="" selected>اختر نوع الجهاز</option>
+                                    <option value="مكيف">مكيف</option>
+                                    <option value="ثلاجة">ثلاجة</option>
+                                    <option value="فريزر">فريزر</option>
+                                    <option value="غسالة">غسالة</option>
+                                </select>
+                            </div>
+                            <div class="form-group" id="brandGroup" style="display: none;">
+                                <label for="brand">ماركة الجهاز</label>
+                                <select class="form-select" id="brand" aria-label="ماركة الجهاز">
+                                    <option value="" selected>اختر ماركة الجهاز</option>
+                                    <option value="كريازي">كريازي</option>
+                                    <option value="توشيبا">توشيبا</option>
+                                    <option value="إل جي">إل جي</option>
+                                    <option value="سامسونج">سامسونج</option>
+                                    <option value="وايت ويل">وايت ويل</option>
+                                    <option value="زانوسي">زانوسي</option>
+                                    <option value="شارب">شارب</option>
+                                    <option value="بيكو">بيكو</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary" aria-label="إرسال الرسالة عبر واتساب">إرسال الرسالة</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- Contact Info Part -->
+                <div class="col-md-6">
+                    <div class="contact-info animate__animated animate__fadeInRight">
+                        <h3>معلومات التواصل</h3>
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <span>info@alaman.com</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-phone"></i>
+                                <span dir="ltr">+966 57 765 9202</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                            <p><strong>العنوان:</strong> الأمير مقرن بن عبدالعزيز، DMPC3305، حي باقدو المبعوث، المدينة المنورة 42362، المملكة العربية السعودية</p>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-clock"></i>
+                                <span>الأحد - الخميس: 9:00 ص - 5:00 م</span>
+                            </div>
+                        </div>
+                        <div class="map-container">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3623.9873923146633!2d46.6989919!3d24.7135517!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f03890d489b45%3A0x8e6a9b1a2e8b3c4e!2z2YXYr9ix2LPYqSDYp9mE2YXYrdin2K_YqQ!5e0!3m2!1sar!2ssa!4v1697051234567!5m2!1sar!2ssa" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                        <div class="social-links">
+                            <a href="https://facebook.com" target="_blank" aria-label="تابعنا على فيسبوك"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://twitter.com" target="_blank" aria-label="تابعنا على تويتر"><i class="fab fa-twitter"></i></a>
+                            <a href="https://instagram.com" target="_blank" aria-label="تابعنا على إنستغرام"><i class="fab fa-instagram"></i></a>
+                            <a href="https://linkedin.com" target="_blank" aria-label="تابعنا على لينكدإن"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                        <a href="https://wa.me/+966123456789?text=مرحبًا، أحتاج إلى مساعدة" class="btn btn-whatsapp mt-3" target="_blank" aria-label="تواصلوا معنا عبر واتساب">تواصلوا عبر واتساب</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Toast Notification -->
+            <div id="toastNotification" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                تم إرسال الرسالة بنجاح!
+            </div>
+        </div>
+    </section>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('contactForm');
+            const deviceType = document.getElementById('deviceType');
+            const brandGroup = document.getElementById('brandGroup');
+            const toast = document.getElementById('toastNotification');
+
+            // Toggle brand select visibility
+            deviceType.addEventListener('change', () => {
+                brandGroup.style.display = deviceType.value ? 'block' : 'none';
+            });
+
+            // Form submission
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const name = document.getElementById('name').value.trim();
+                const address = document.getElementById('address').value.trim();
+                const problem = document.getElementById('problem').value.trim();
+                const device = deviceType.value;
+                const brand = document.getElementById('brand').value;
+
+                // Client-side validation
+                if (!name || !address || !problem) {
+                    form.classList.add('was-validated');
+                    return;
+                }
+
+                // Construct WhatsApp message
+                const message = `الاسم: ${name}\nالعنوان: ${address}\nالمشكلة: ${problem}${device ? `\nنوع الجهاز: ${device}` : ''}${brand ? `\nماركة الجهاز: ${brand}` : ''}`;
+                const encodedMessage = encodeURIComponent(message);
+                const whatsappUrl = `https://wa.me/+966123456789?text=${encodedMessage}`;
+
+                // Show toast and redirect
+                toast.classList.add('show');
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                    window.open(whatsappUrl, '_blank');
+                    form.reset();
+                    form.classList.remove('was-validated');
+                    brandGroup.style.display = 'none';
+                }, 2000);
+            });
+        });
+    </script>
+</body>
+</html>
