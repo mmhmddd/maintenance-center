@@ -171,3 +171,31 @@ class ContinuousSlider {
     }
 }
 new ContinuousSlider('clientSlider');
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Animation on scroll
+    const observerOptions = {
+        threshold: 0.2,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate__animated');
+                const delay = entry.target.getAttribute('data-animation-delay');
+                if (delay) {
+                    entry.target.style.animationDelay = delay;
+                }
+                entry.target.classList.add(entry.target.classList.contains('section-title') ? 'animate__fadeInDown' : 'animate__fadeInUp');
+            }
+        });
+    }, observerOptions);
+
+    // Observe animated elements
+    document.querySelectorAll('.section-title, .service-card').forEach(el => {
+        observer.observe(el);
+    });
+});

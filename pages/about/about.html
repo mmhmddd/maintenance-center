@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>من نحن | خدمة الصيانة المتخصصة</title>
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts for Tajawal -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Animate.css for animations -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!-- Bootstrap Icons (for about section icons) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/css/about.css">
+    <link rel="stylesheet" href="/shared/navbar/navbar.css">
+    <link rel="stylesheet" href="/shared/footer/footer.css">
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+
+    <main>
+        <!-- About Section with Cards -->
+        <section class="about-section py-5" id="about-section">
+            <div class="container">
+                <div class="section-title text-center mb-5 animate__animated animate__fadeInDown">
+                    <h1 class="display-4 fw-bold">صيانة الأجهزة المنزلية</h1>
+                    <div class="title-underline"></div>
+                    <p class="lead mt-3">صيانة الأجهزة المنزلية والكهربائية بجودة عالية. نحن رواد في المجال مع فنيين ذوي خبرة تزيد عن 18 عامًا، نستخدم أحدث التقنيات لصيانة الثلاجات، المكيفات، الغسالات، الميكروويف وغيرها، مع ضمان رضا العملاء وخدمة سريعة تصلك أينما كنت.</p>
+                </div>
+                
+                <div class="row g-0">
+                    <!-- Card 1: من نحن؟ -->
+                    <div class="col-md-4 right-card about-card">
+                        <div class="card h-100 border-0 shadow-sm about-card animate__animated animate__fadeInLeft">
+                            <div class="card-body text-center p-4">
+                                <i class="bi bi-tools icon-accent mb-3"></i>
+                                <h2 class="card-title fw-bold mb-3">من نحن؟</h2>
+                                <p class="card-text">شركة الأمان رائدة في صيانة الأجهزة الكهربائية بالمدينة، بخبرة تفوق 18 عامًا في صيانة الثلاجات والمكيفات والغسالات وغيرها، بفريق متخصص وضمان جودة وقطع غيار أصلية.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 2: أهدافنا! -->
+                    <div class="col-md-4 about-card">
+                        <div class="card border-0 shadow about-card taller-card animate__animated animate__fadeInUp">
+                            <img src="/assets/images/home/about-image.png" class="card-img-top" alt="أهدافنا" loading="lazy">
+                            <div class="card-body text-center p-4">
+                                <i class="bi bi-bullseye icon-accent mb-3"></i>
+                                <h2 class="card-title fw-bold mb-3">أهدافنا!</h2>
+                                <p class="card-text">نسعى لتقديم خدمات صيانة متميزة بأعلى معايير الجودة، مع التركيز على رضا العملاء وتطوير حلول مبتكرة لصيانة الأجهزة المنزلية.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 3: مهمتنا! -->
+                    <div class="col-md-4 left-card about-card">
+                        <div class="card h-100 border-0 shadow-sm about-card animate__animated animate__fadeInRight">
+                            <div class="card-body text-center p-4">
+                                <i class="bi bi-gear-fill icon-accent mb-3"></i>
+                                <h2 class="card-title fw-bold mb-3">مهمتنا!</h2>
+                                <p class="card-text">في شركة الأمان نحرص على تقديم صيانة موثوقة وعالية الجودة للأجهزة المنزلية، عبر فريق متخصص وأدوات حديثة وقطع غيار أصلية، مع التزام دائم بتحسين الخدمة وكسب ثقة العملاء.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Booking Section -->
+        <section class="booking-section mb-5 fade-in">
+            <div class="booking-cta">
+                <h3 class="mb-3">
+                    <i class="fas fa-calendar-check me-2"></i>
+                    احجز معنا الان
+                </h3>
+                <p class="mb-4">تواصل معنا الآن لحجز موعد صيانة سريع وموثوق!</p>
+                <a href="https://wa.me/+966501234568?text=مرحبا، أود حجز موعد صيانة" target="_blank" class="whatsapp-btn">
+                    <i class="fab fa-whatsapp"></i>
+                    احجز عبر واتساب
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="about.js"></script>
+    <script>
+        // Load Navbar
+        fetch('/shared/navbar/navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-placeholder').innerHTML = data;
+            })
+            .catch(error => console.error('خطأ في تحميل شريط التنقل:', error));
+
+        // Load Footer
+        fetch('/shared/footer/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+                const styleLink = document.querySelector('link[href="/shared/footer/footer.css"]');
+                if (styleLink) {
+                    styleLink.href = styleLink.href;
+                }
+            })
+            .catch(error => console.error('خطأ في تحميل تذييل الصفحة:', error));
+    </script>
+</body>
+</html>
