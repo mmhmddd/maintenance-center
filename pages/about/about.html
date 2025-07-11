@@ -1,113 +1,452 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>من نحن | خدمة الصيانة المتخصصة</title>
-    <!-- Bootstrap CSS CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Google Fonts for Tajawal -->
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <!-- Animate.css for animations -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <!-- Bootstrap Icons (for about section icons) -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="/css/about.css">
-    <link rel="stylesheet" href="/shared/navbar/navbar.css">
-    <link rel="stylesheet" href="/shared/footer/footer.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>من نحن | خدمة الصيانة المتخصصة</title>
+<!-- Bootstrap CSS CDN -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Google Fonts for Tajawal -->
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+<!-- Font Awesome for Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<!-- Animate.css for animations -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+<!-- Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<!-- AOS Animation Library -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/about.css">
+<link rel="stylesheet" href="/shared/navbar/navbar.css">
+<link rel="stylesheet" href="/shared/footer/footer.css">
 </head>
 <body>
-    <div id="navbar-placeholder"></div>
+<div id="navbar-placeholder"></div>
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container">
+        <div class="hero-content text-center">
+            <h1 class="animate__animated animate__fadeInDown">صيانة الأجهزة المنزلية</h1>
+            <div class="title-underline animate__animated animate__fadeInUp animate__delay-1s"></div>
+            <p class="lead animate__animated animate__fadeInUp animate__delay-2s">
+                رواد في صيانة الأجهزة المنزلية والكهربائية بجودة عالية وخبرة تزيد عن 18 عامًا
+                <br>نستخدم أحدث التقنيات مع ضمان رضا العملاء وخدمة سريعة تصلك أينما كنت
+            </p>
+        </div>
+    </div>
+</section>
 
-    <main>
-        <!-- About Section with Cards -->
-        <section class="about-section py-5" id="about-section">
-            <div class="container">
-                <div class="section-title text-center mb-5 animate__animated animate__fadeInDown">
-                    <h1 class="display-4 fw-bold">صيانة الأجهزة المنزلية</h1>
-                    <div class="title-underline"></div>
-                    <p class="lead mt-3">صيانة الأجهزة المنزلية والكهربائية بجودة عالية. نحن رواد في المجال مع فنيين ذوي خبرة تزيد عن 18 عامًا، نستخدم أحدث التقنيات لصيانة الثلاجات، المكيفات، الغسالات، الميكروويف وغيرها، مع ضمان رضا العملاء وخدمة سريعة تصلك أينما كنت.</p>
-                </div>
-                
-                <div class="row g-0">
-                    <!-- Card 1: من نحن؟ -->
-                    <div class="col-md-4 right-card about-card">
-                        <div class="card h-100 border-0 shadow-sm about-card animate__animated animate__fadeInLeft">
-                            <div class="card-body text-center p-4">
-                                <i class="bi bi-tools icon-accent mb-3"></i>
-                                <h2 class="card-title fw-bold mb-3">من نحن؟</h2>
-                                <p class="card-text">شركة الأمان رائدة في صيانة الأجهزة الكهربائية بالمدينة، بخبرة تفوق 18 عامًا في صيانة الثلاجات والمكيفات والغسالات وغيرها، بفريق متخصص وضمان جودة وقطع غيار أصلية.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Card 2: أهدافنا! -->
-                    <div class="col-md-4 about-card">
-                        <div class="card border-0 shadow about-card taller-card animate__animated animate__fadeInUp">
-                            <img src="/assets/images/home/about-image.png" class="card-img-top" alt="أهدافنا" loading="lazy">
-                            <div class="card-body text-center p-4">
-                                <i class="bi bi-bullseye icon-accent mb-3"></i>
-                                <h2 class="card-title fw-bold mb-3">أهدافنا!</h2>
-                                <p class="card-text">نسعى لتقديم خدمات صيانة متميزة بأعلى معايير الجودة، مع التركيز على رضا العملاء وتطوير حلول مبتكرة لصيانة الأجهزة المنزلية.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Card 3: مهمتنا! -->
-                    <div class="col-md-4 left-card about-card">
-                        <div class="card h-100 border-0 shadow-sm about-card animate__animated animate__fadeInRight">
-                            <div class="card-body text-center p-4">
-                                <i class="bi bi-gear-fill icon-accent mb-3"></i>
-                                <h2 class="card-title fw-bold mb-3">مهمتنا!</h2>
-                                <p class="card-text">في شركة الأمان نحرص على تقديم صيانة موثوقة وعالية الجودة للأجهزة المنزلية، عبر فريق متخصص وأدوات حديثة وقطع غيار أصلية، مع التزام دائم بتحسين الخدمة وكسب ثقة العملاء.</p>
-                            </div>
-                        </div>
+<!-- About Cards Section -->
+<section class="about-section">
+    <div class="container">
+        <div class="row g-0">
+            <!-- Card 1: من نحن؟ -->
+            <div class="col-md-4 right-card about-card">
+                <div class="card h-100 border-0 shadow-sm about-card animate__animated animate__fadeInLeft">
+                    <div class="card-body text-center p-4">
+                        <i class="bi bi-tools icon-accent mb-3"></i>
+                        <h2 class="card-title fw-bold mb-3">من نحن؟</h2>
+                        <p class="card-text">شركة الأمان رائدة في صيانة الأجهزة الكهربائية بالمدينة، بخبرة تفوق 18 عامًا في صيانة الثلاجات والمكيفات والغسالات وغيرها، بفريق متخصص وضمان جودة وقطع غيار أصلية.</p>
                     </div>
                 </div>
             </div>
-        </section>
-
-        <!-- Booking Section -->
-        <section class="booking-section mb-5 fade-in">
-            <div class="booking-cta">
-                <h3 class="mb-3">
-                    <i class="fas fa-calendar-check me-2"></i>
-                    احجز معنا الان
-                </h3>
-                <p class="mb-4">تواصل معنا الآن لحجز موعد صيانة سريع وموثوق!</p>
-                <a href="https://wa.me/+966501234568?text=مرحبا، أود حجز موعد صيانة" target="_blank" class="whatsapp-btn">
-                    <i class="fab fa-whatsapp"></i>
-                    احجز عبر واتساب
-                </a>
+            <!-- Card 2: أهدافنا! -->
+            <div class="col-md-4 about-card">
+                <div class="card border-0 shadow about-card taller-card animate__animated animate__fadeInUp">
+                    <div style="height: 300px; background: linear-gradient(135deg, #007bff, #0056b3); display: flex; align-items: center; justify-content: center; color: white; font-size: 4rem;">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <div class="card-body text-center p-4">
+                        <i class="bi bi-bullseye icon-accent mb-3"></i>
+                        <h2 class="card-title fw-bold mb-3">أهدافنا!</h2>
+                        <p class="card-text">نسعى لتقديم خدمات صيانة متميزة بأعلى معايير الجودة، مع التركيز على رضا العملاء وتطوير حلول مبتكرة لصيانة الأجهزة المنزلية.</p>
+                    </div>
+                </div>
             </div>
-        </section>
-    </main>
+            <!-- Card 3: مهمتنا! -->
+            <div class="col-md-4 left-card about-card">
+                <div class="card h-100 border-0 shadow-sm about-card animate__animated animate__fadeInRight">
+                    <div class="card-body text-center p-4">
+                        <i class="bi bi-gear-fill icon-accent mb-3"></i>
+                        <h2 class="card-title fw-bold mb-3">مهمتنا!</h2>
+                        <p class="card-text">في شركة الأمان نحرص على تقديم صيانة موثوقة وعالية الجودة للأجهزة المنزلية، عبر فريق متخصص وأدوات حديثة وقطع غيار أصلية، مع التزام دائم بتحسين الخدمة وكسب ثقة العملاء.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-    <div id="footer-placeholder"></div>
+<!-- Statistics Section -->
+<section class="statistics-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-6 mb-4">
+                <div class="stat-card fade-in">
+                    <span class="stat-number" data-count="18">0</span>
+                    <div class="stat-label">سنة خبرة</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-6 mb-4">
+                <div class="stat-card fade-in">
+                    <span class="stat-number" data-count="980">0</span>
+                    <div class="stat-label">عميل راضٍ</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-6 mb-4">
+                <div class="stat-card fade-in">
+                    <span class="stat-number" data-count="15">0</span>
+                    <div class="stat-label">فني متخصص</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-6 mb-4">
+                <div class="stat-card fade-in">
+                    <span class="stat-number" data-count="24">0</span>
+                    <div class="stat-label">ساعة خدمة</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="about.js"></script>
-    <script>
-        // Load Navbar
-        fetch('/shared/navbar/navbar.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('navbar-placeholder').innerHTML = data;
-            })
-            .catch(error => console.error('خطأ في تحميل شريط التنقل:', error));
+<!-- Our Work Section -->
+<section class="work-section">
+    <div class="container">
+        <div class="section-title">
+            <h2 data-aos="fade-up">معرض أعمالنا</h2>
+            <div class="title-underline"></div>
+            <p data-aos="fade-up" data-aos-delay="200">شاهد نماذج من أعمالنا المتميزة في صيانة الأجهزة المنزلية</p>
+        </div>
 
-        // Load Footer
-        fetch('/shared/footer/footer.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('footer-placeholder').innerHTML = data;
-                const styleLink = document.querySelector('link[href="/shared/footer/footer.css"]');
-                if (styleLink) {
-                    styleLink.href = styleLink.href;
-                }
-            })
-            .catch(error => console.error('خطأ في تحميل تذييل الصفحة:', error));
-    </script>
+        <!-- Work Tabs -->
+        <div class="work-tabs text-center" data-aos="fade-up" data-aos-delay="400">
+            <ul class="nav nav-pills justify-content-center">
+                <li class="nav-item">
+                    <a class="nav-link active" data-bs-toggle="pill" href="#images-tab">الصور</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="pill" href="#videos-tab">الفيديوهات</a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Work Content -->
+        <div class="tab-content">
+            <!-- Images Tab -->
+            <div class="tab-pane fade show active" id="images-tab">
+                <div class="work-grid">
+                    <div class="work-item" data-aos="fade-up" data-aos-delay="100">
+                        <div style="height: 200px; background: linear-gradient(45deg, #28a745, #20c997); display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;">
+                            <img src="/assets/images/about/image1.jpg" alt="">                            
+                        </div>
+                        <div class="work-item-content">
+                            <h4>صيانة مكيف سبليت</h4>
+                            <p>إصلاح وصيانة شاملة مكيف سبليت</p>
+                            <span class="work-badge">مكتمل</span>
+                        </div>
+                    </div>
+                    
+                    <div class="work-item" data-aos="fade-up" data-aos-delay="200">
+                        <div style="height: 200px; background: linear-gradient(45deg, #007bff, #0056b3); display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;">
+                            <img src="/assets/images/about/image2.jpg" alt="">
+                        </div>
+                        <div class="work-item-content">
+                            <h4>صيانة المكيفات</h4>
+                            <p>تنظيف وصيانة مكيف مع تعبئة الفريون</p>
+                            <span class="work-badge">مكتمل</span>
+                        </div>
+                    </div>
+                    
+                    <div class="work-item" data-aos="fade-up" data-aos-delay="300">
+                        <div style="height: 200px; background: linear-gradient(45deg, #6f42c1, #563d7c); display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;">
+                            <img src="/assets/images/about/image3.jpg" alt="">
+                        </div>
+                        <div class="work-item-content">
+                            <h4>تنضيف المكيف</h4>
+                            <p>صيانه التكيف وتغير الفلتر</p>
+                            <span class="work-badge">مكتمل</span>
+                        </div>
+                    </div>
+                    
+                    <div class="work-item" data-aos="fade-up" data-aos-delay="400">
+                        <div style="height: 200px; background: linear-gradient(45deg, #fd7e14, #e55d00); display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;">
+                            <img src="/assets/images/about/imgae4.jpg" alt="">
+                        </div>
+                    <div class="work-item-content">
+                            <h4>قطه غيار اصليه</h4>
+                            <p>تغيير القطع المستهلكه بقطع غيار اصليه جديده</p>
+                            <span class="work-badge">مكتمل</span>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <!-- Videos Tab -->
+            <div class="tab-pane fade" id="videos-tab">
+                <div class="work-grid">
+                <div class="work-item video-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="video-container" style="height: 300px; position: relative; overflow: hidden; border-radius: 10px;">
+                        <video 
+                            src="/assets/images/about/video1.mp4" 
+                            autoplay 
+                            muted 
+                            loop 
+                            playsinline 
+                            style="width: 100%; height: 300px; object-fit: cover;"
+                        ></video>
+                    </div>
+                    <div class="work-item-content">
+                        <p>شاهد عملية إصلاح تكيف كارير بالتفصيل</p>
+                    </div>
+                </div>
+
+                                    
+                <div class="work-item video-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="video-container" style="height: 300px; position: relative; overflow: hidden; border-radius: 10px;">
+                        <video 
+                            src="/assets/images/about/video2.mp4" 
+                            autoplay 
+                            muted 
+                            loop 
+                            playsinline 
+                            style="width: 100%; height: 300px; object-fit: cover;"
+                        ></video>
+                    </div>
+                    <div class="work-item-content">
+                        <p>شاهد عملية إصلاح نكيف سامسونج بالتفصيل</p>
+                    </div>
+                </div>
+
+                                    
+                <div class="work-item video-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="video-container" style="height: 300px; position: relative; overflow: hidden; border-radius: 10px;">
+                        <video 
+                            src="/assets/images/about/video3.mp4" 
+                            autoplay 
+                            muted 
+                            loop 
+                            playsinline 
+                            style="width: 100%; object-fit: cover;"
+                        ></video>
+                    </div>
+                    <div class="work-item-content">
+                        <p>شاهد عملية إصلاح تكيف sharp بالتفصيل</p>
+                    </div>
+                </div>
+
+                                    
+                <div class="work-item video-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="video-container" style="height: 300px; position: relative; overflow: hidden; border-radius: 10px;">
+                        <video 
+                            src="/assets/images/about/video4.mp4" 
+                            autoplay 
+                            muted 
+                            loop 
+                            playsinline 
+                            style="width: 100%; object-fit: cover;"
+                        ></video>
+                    </div>
+                    <div class="work-item-content">
+                        <p>شاهد عملية إصلاح ثلاجة سامسونج بالتفصيل</p>
+                    </div>
+                </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Team Section -->
+<section class="team-section">
+    <div class="container">
+        <div class="section-title">
+            <h2 data-aos="fade-up">فريق العمل</h2>
+            <div class="title-underline"></div>
+            <p data-aos="fade-up" data-aos-delay="200">فريقنا من الفنيين المتخصصين ذوي الخبرة العالية</p>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="team-member" data-aos="fade-up" data-aos-delay="100">
+                    <div class="team-avatar">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div class="team-name">أحمد محمد</div>
+                    <div class="team-role">مدير الصيانة</div>
+                    <div class="team-experience">18 سنة خبرة</div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="team-member" data-aos="fade-up" data-aos-delay="200">
+                    <div class="team-avatar">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <div class="team-name">محمد علي</div>
+                    <div class="team-role">فني الثلاجات والمكيفات</div>
+                    <div class="team-experience">15 سنة خبرة</div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="team-member" data-aos="fade-up" data-aos-delay="300">
+                    <div class="team-avatar">
+                        <i class="fas fa-wrench"></i>
+                    </div>
+                    <div class="team-name">سامي أحمد</div>
+                    <div class="team-role">فني الغسالات والأفران</div>
+                    <div class="team-experience">12 سنة خبرة</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Features Section -->
+<section class="features-section py-5" style="background: linear-gradient(135deg, #f8f9fa, #e9ecef);">
+    <div class="container">
+        <div class="section-title">
+            <h2 data-aos="fade-up">مميزات خدماتنا</h2>
+            <div class="title-underline"></div>
+            <p data-aos="fade-up" data-aos-delay="200">نتميز بالعديد من المميزات التي تجعلنا الخيار الأول للعملاء</p>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="text-center p-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon mb-3" style="font-size: 3rem; color: var(--primary-blue);">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h4 style="color: var(--primary-blue); font-weight: 600;">خدمة سريعة</h4>
+                    <p>نصلك خلال 24 ساعة من طلب الخدمة</p>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="text-center p-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon mb-3" style="font-size: 3rem; color: var(--success-green);">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h4 style="color: var(--primary-blue); font-weight: 600;">ضمان الجودة</h4>
+                    <p>ضمان على جميع أعمال الصيانة لمدة 6 أشهر</p>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="text-center p-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-icon mb-3" style="font-size: 3rem; color: var(--yellow);">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h4 style="color: var(--primary-blue); font-weight: 600;">قطع غيار أصلية</h4>
+                    <p>نستخدم قطع غيار أصلية من الشركات المصنعة</p>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="text-center p-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="feature-icon mb-3" style="font-size: 3rem; color: #dc3545;">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <h4 style="color: var(--primary-blue); font-weight: 600;">دعم على مدار الساعة</h4>
+                    <p>خدمة العملاء متاحة 24/7 لتلبية احتياجاتكم</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonials-section py-5" style="background: var(--white);">
+    <div class="container">
+        <div class="section-title">
+            <h2 data-aos="fade-up">آراء العملاء</h2>
+            <div class="title-underline"></div>
+            <p data-aos="fade-up" data-aos-delay="200">شاهد ما يقوله عملاؤنا عن خدماتنا</p>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="testimonial-card p-4" style="background: var(--gray-light); border-radius: 15px; box-shadow: var(--shadow-light);" data-aos="fade-up" data-aos-delay="100">
+                    <div class="stars mb-3" style="color: var(--yellow); font-size: 1.2rem;">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p style="font-style: italic; color: var(--gray-dark);">"خدمة ممتازة وسريعة، تم إصلاح الثلاجة في نفس اليوم بجودة عالية وسعر مناسب."</p>
+                    <div class="customer-name" style="font-weight: 600; color: var(--primary-blue);">- فاطمة أحمد</div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="testimonial-card p-4" style="background: var(--gray-light); border-radius: 15px; box-shadow: var(--shadow-light);" data-aos="fade-up" data-aos-delay="200">
+                    <div class="stars mb-3" style="color: var(--yellow); font-size: 1.2rem;">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p style="font-style: italic; color: var(--gray-dark);">"فريق محترف ومتخصص، أصلحوا المكيف وأعطوني ضمان. أنصح بهم بشدة."</p>
+                    <div class="customer-name" style="font-weight: 600; color: var(--primary-blue);">- خالد محمد</div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="testimonial-card p-4" style="background: var(--gray-light); border-radius: 15px; box-shadow: var(--shadow-light);" data-aos="fade-up" data-aos-delay="300">
+                    <div class="stars mb-3" style="color: var(--yellow); font-size: 1.2rem;">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p style="font-style: italic; color: var(--gray-dark);">"صيانة الغسالة تمت بشكل ممتاز، الفني كان مهذب ومحترف. شكرًا لكم."</p>
+                    <div class="customer-name" style="font-weight: 600; color: var(--primary-blue);">- نورا سالم</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Booking Section -->
+<section class="booking-section">
+    <div class="container">
+        <div class="booking-cta">
+            <h3 class="mb-3 animate__animated animate__bounceIn">
+                <i class="fas fa-calendar-check me-2"></i>
+                احجز معنا الآن
+            </h3>
+            <p class="mb-4 animate__animated animate__fadeInUp animate__delay-1s">تواصل معنا الآن لحجز موعد صيانة سريع وموثوق!</p>
+            <a href="https://wa.me/+966577659202?text=مرحبا، أود حجز موعد صيانة" target="_blank" class="whatsapp-btn animate__animated animate__pulse animate__infinite">
+                <i class="fab fa-whatsapp"></i>
+                احجز عبر واتساب
+            </a>
+        </div>
+    </div>
+</section>
+<div id="footer-placeholder"></div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- AOS Animation JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script src="/js/about.js"></script>
+<script>
+            // Load Navbar
+    fetch('/shared/navbar/navbar.html')
+        .then(response => response.text())
+        .then(data => document.getElementById('navbar-placeholder').innerHTML = data)
+        .catch(error => console.error('Error loading navbar:', error));
+
+    // Load Footer
+    fetch('/shared/footer/footer.html')
+        .then(response => response.text())
+        .then(data => document.getElementById('footer-placeholder').innerHTML = data)
+        .catch(error => console.error('Error loading footer:', error));
+</script>
 </body>
 </html>

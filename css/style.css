@@ -218,7 +218,7 @@ body {
     text-align: center;
 }
 
-.about-us-slider .section-title {
+.about-us-slider ,.features-section .section-title {
     font-size: 2.5rem;
     color: var(--primary-blue);
     margin-bottom: 20px;
@@ -227,6 +227,13 @@ body {
 
 .about-us-slider .intro-text {
     font-size: 1.2rem;
+    color: var(--gray-dark);
+    max-width: 700px;
+    margin: 0 auto 40px;
+    line-height: 1.8;
+}
+.features-section .intro-text{
+        font-size: 1.2rem;
     color: var(--gray-dark);
     max-width: 700px;
     margin: 0 auto 40px;
