@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="/shared/navbar/navbar.css">
     <link rel="stylesheet" href="/shared/footer/footer.css">
     <link rel="shortcut icon" href="/assets/images/home/logo.png" type="image/x-icon">
-
 </head>
 <body>
     <!-- Navbar Placeholder with Loading Indicator -->
@@ -301,56 +300,5 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="contact.js"></script>
-    <script>
-        // Function to load external scripts after navbar/footer is loaded
-        function loadScript(src) {
-            const script = document.createElement('script');
-            script.src = src;
-            script.async = true;
-            document.body.appendChild(script);
-        }
-
-        // Load Navbar
-        fetch('/shared/navbar/navbar.html?v=' + new Date().getTime())
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Failed to load navbar: ' + response.status);
-                }
-                return response.text();
-            })
-            .then(data => {
-                document.getElementById('navbar-placeholder').innerHTML = data;
-                // Reinitialize navbar scripts if needed (e.g., Bootstrap dropdowns)
-                loadScript('/shared/navbar/navbar.js'); // Adjust path if navbar.js exists
-            })
-            .catch(error => {
-                console.error('Error loading navbar:', error);
-                document.getElementById('navbar-placeholder').innerHTML = `
-                    <div class="alert alert-danger text-center">
-                        فشل تحميل شريط التنقل. يرجى إعادة تحميل الصفحة أو التواصل مع الدعم.
-                    </div>`;
-            });
-
-        // Load Footer
-        fetch('/shared/footer/footer.html?v=' + new Date().getTime())
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Failed to load footer: ' + response.status);
-                }
-                return response.text();
-            })
-            .then(data => {
-                document.getElementById('footer-placeholder').innerHTML = data;
-                // Reinitialize footer scripts if needed
-                loadScript('/shared/footer/footer.js'); // Adjust path if footer.js exists
-            })
-            .catch(error => {
-                console.error('Error loading footer:', error);
-                document.getElementById('footer-placeholder').innerHTML = `
-                    <div class="alert alert-danger text-center">
-                        فشل تحميل التذييل. يرجى إعادة تحميل الصفحة أو التواصل مع الدعم.
-                    </div>`;
-            });
-    </script>
 </body>
 </html>
