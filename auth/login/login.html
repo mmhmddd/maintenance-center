@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول</title>
+    <link rel="stylesheet" href="login.css">
+    <!-- تحميل مكتبة Firebase الموحدة -->
+    <script type="module">
+        // استيراد Firebase
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+        import { getFirestore, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
+
+        // تهيئة Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyAsV0ghr_t8qQnrT4nbSU20W1d-E4nl4Nk",
+            authDomain: "maintenance-auth-712f0.firebaseapp.com",
+            projectId: "maintenance-auth-712f0",
+            storageBucket: "maintenance-auth-712f0.firebasestorage.app",
+            messagingSenderId: "209495320732",
+            appId: "1:209495320732:web:809d1b835e0d89bd15a559",
+            measurementId: "G-PR0W9ZQQBD"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // دالة تسجيل الدخول
+        window.login = function() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            const q = query(collection(db, "users"), where("email", "==", email));
+            getDocs(q)
+                .then((querySnapshot) => {
+                    if (!querySnapshot.empty) {
+                        const userDoc = querySnapshot.docs[0].data();
+                        if (userDoc.password === password) {
+                            alert('تم تسجيل الدخول بنجاح!');
+                            window.location.href = '/index.html'; // توجيه إلى الصفحة الرئيسية
+                        } else {
+                            alert('كلمة المرور غير صحيحة!');
+                        }
+                    } else {
+                        alert('لا يوجد مستخدم بهذا البريد الإلكتروني!');
+                    }
+                })
+                .catch((error) => {
+                    alert('خطأ أثناء تسجيل الدخول: ' + error.message);
+                });
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>تسجيل الدخول</h2>
+        <input type="email" id="email" placeholder="البريد الإلكتروني" required>
+        <input type="password" id="password" placeholder="كلمة المرور" required>
+        <button onclick="login()">تسجيل الدخول</button>
+        <p>ليس لديك حساب؟ <a href="register.html">تسجيل جديد</a></p>
+    </div>
+</body>
+</html>
