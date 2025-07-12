@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تسجيل الدخول</title>
+    <title>تسجيل الدخول - مركز الصيانة</title>
     <link rel="stylesheet" href="login.css">
-    <!-- تحميل مكتبة Firebase الموحدة -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script type="module">
-        // استيراد Firebase
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
         import { getFirestore, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
 
-        // تهيئة Firebase
         const firebaseConfig = {
             apiKey: "AIzaSyAsV0ghr_t8qQnrT4nbSU20W1d-E4nl4Nk",
             authDomain: "maintenance-auth-712f0.firebaseapp.com",
@@ -25,39 +25,170 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        // دالة تسجيل الدخول
-        window.login = function() {
-            const email = document.getElementById('email').value;
+        function showError(inputId, message) {
+            const errorElement = document.getElementById(`${inputId}-error`);
+            errorElement.textContent = message;
+            errorElement.style.display = 'block';
+            document.getElementById(inputId).classList.add('input-error');
+        }
+
+        function clearError(inputId) {
+            const errorElement = document.getElementById(`${inputId}-error`);
+            errorElement.textContent = '';
+            errorElement.style.display = 'none';
+            document.getElementById(inputId).classList.remove('input-error');
+        }
+
+        function validatePhone(phone) {
+            const phoneRegex = /^(\+9665[0-9]{8}|05[0-9]{8})$/;
+            if (!phone || !phoneRegex.test(phone)) {
+                return 'رقم الهاتف يجب أن يكون صالحًا (مثال: +9665XXXXXXXX أو 05XXXXXXXX)';
+            }
+            return '';
+        }
+
+        function validatePassword(password) {
+            const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/;
+            if (!password || !passwordRegex.test(password)) {
+                return 'كلمة المرور يجب أن تحتوي على 8 أحرف على الأقل، بما في ذلك حرف ورقم';
+            }
+            return '';
+        }
+
+        window.login = async function() {
+            const phone = document.getElementById('phone').value;
             const password = document.getElementById('password').value;
 
-            const q = query(collection(db, "users"), where("email", "==", email));
-            getDocs(q)
-                .then((querySnapshot) => {
-                    if (!querySnapshot.empty) {
-                        const userDoc = querySnapshot.docs[0].data();
-                        if (userDoc.password === password) {
-                            alert('تم تسجيل الدخول بنجاح!');
-                            window.location.href = '/index.html'; // توجيه إلى الصفحة الرئيسية
-                        } else {
-                            alert('كلمة المرور غير صحيحة!');
-                        }
+            // Clear previous errors
+            clearError('phone');
+            clearError('password');
+
+            // Validate inputs
+            let isValid = true;
+            const phoneError = validatePhone(phone);
+            if (phoneError) {
+                showError('phone', phoneError);
+                isValid = false;
+            }
+
+            const passwordError = validatePassword(password);
+            if (passwordError) {
+                showError('password', passwordError);
+                isValid = false;
+            }
+
+            if (!isValid) {
+                return;
+            }
+
+            try {
+                const q = query(collection(db, "users"), where("phone", "==", phone));
+                const querySnapshot = await getDocs(q);
+                if (!querySnapshot.empty) {
+                    const userDoc = querySnapshot.docs[0].data();
+                    if (userDoc.password === password) {
+                        const token = Math.random().toString(36).substr(2) + Date.now().toString(36);
+                        const userData = {
+                            phone: phone,
+                            token: token,
+                            name: userDoc.name,
+                            address: userDoc.address
+                        };
+                        localStorage.setItem('user', JSON.stringify(userData));
+
+                        // Set timer to remove token after 2 minutes (120,000 ms)
+                        setTimeout(() => {
+                            localStorage.removeItem('user');
+                            Toastify({
+                                text: 'جلستك انتهت، يرجى تسجيل الدخول مرة أخرى.',
+                                duration: 3000,
+                                gravity: 'top',
+                                position: 'right',
+                                backgroundColor: 'var(--error)',
+                                className: 'toast-error'
+                            }).showToast();
+                            window.location.href = '/auth/login/login.html';
+                        }, 120000);
+
+                        Toastify({
+                            text: 'تم تسجيل الدخول بنجاح!',
+                            duration: 3000,
+                            gravity: 'top',
+                            position: 'right',
+                            backgroundColor: 'var(--success)',
+                            className: 'toast-success'
+                        }).showToast();
+
+                        const redirect = new URLSearchParams(window.location.search).get('redirect');
+                        setTimeout(() => {
+                            window.location.href = redirect || '/index.html';
+                        }, 3000);
                     } else {
-                        alert('لا يوجد مستخدم بهذا البريد الإلكتروني!');
+                        showError('password', 'كلمة المرور غير صحيحة');
+                        Toastify({
+                            text: 'كلمة المرور غير صحيحة!',
+                            duration: 5000,
+                            gravity: 'top',
+                            position: 'right',
+                            backgroundColor: 'var(--error)',
+                            className: 'toast-error'
+                        }).showToast();
                     }
-                })
-                .catch((error) => {
-                    alert('خطأ أثناء تسجيل الدخول: ' + error.message);
-                });
+                } else {
+                    showError('phone', 'لا يوجد مستخدم بهذا الرقم');
+                    Toastify({
+                        text: 'لا يوجد مستخدم بهذا الرقم!',
+                        duration: 5000,
+                        gravity: 'top',
+                        position: 'right',
+                        backgroundColor: 'var(--error)',
+                        className: 'toast-error'
+                    }).showToast();
+                }
+            } catch (error) {
+                Toastify({
+                    text: 'خطأ أثناء تسجيل الدخول: ' + error.message,
+                    duration: 5000,
+                    gravity: 'top',
+                    position: 'right',
+                    backgroundColor: 'var(--error)',
+                    className: 'toast-error'
+                }).showToast();
+            }
+        };
+
+        window.onload = function() {
+            const user = JSON.parse(localStorage.getItem('user'));
+            if (user && user.token) {
+                window.location.href = '/index.html';
+            }
         };
     </script>
 </head>
 <body>
-    <div class="container">
-        <h2>تسجيل الدخول</h2>
-        <input type="email" id="email" placeholder="البريد الإلكتروني" required>
-        <input type="password" id="password" placeholder="كلمة المرور" required>
-        <button onclick="login()">تسجيل الدخول</button>
-        <p>ليس لديك حساب؟ <a href="/auth/register/register.html">تسجيل جديد</a></p>
+    <div class="login-container">
+        <div class="login-card">
+            <div class="logo">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--primary-blue)" stroke-width="2">
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                </svg>
+                <h1>مركز الصيانة</h1>
+            </div>
+            <h2>تسجيل الدخول</h2>
+            <div class="form-group">
+                <label for="phone">رقم الهاتف</label>
+                <input type="tel" id="phone" placeholder="أدخل رقم الهاتف" required>
+                <span id="phone-error" class="error-message"></span>
+            </div>
+            <div class="form-group">
+                <label for="password">كلمة المرور</label>
+                <input type="password" id="password" placeholder="أدخل كلمة المرور" required>
+                <span id="password-error" class="error-message"></span>
+            </div>
+            <button onclick="login()" class="login-btn">تسجيل الدخول</button>
+            <p class="register-link">ليس لديك حساب؟ <a href="/auth/register/register.html">إنشاء حساب جديد</a></p>
+        </div>
     </div>
 </body>
 </html>

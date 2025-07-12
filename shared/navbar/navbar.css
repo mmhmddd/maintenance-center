@@ -72,6 +72,16 @@ body {
     border-radius: 25px;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
+#logout_button{
+    background-color: red;
+    border-color: var(--primary-blue);
+    color: var(--white);
+    padding: 0.5rem 1.5rem;
+    font-size: var(--font-size-base);
+    border-radius: 25px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: none;
+}
 
 .btn-book:hover {
     background-color: var(--blue-dark);

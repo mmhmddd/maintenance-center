@@ -340,3 +340,19 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
+        // التحقق من التوكن
+        window.onload = function() {
+            const user = JSON.parse(localStorage.getItem('user'));
+            if (!user || !user.token) {
+                window.location.href = `/auth/login/login.html?redirect=/pages/booking/booking.html`;
+            } else {
+                document.getElementById('userInfo').innerText = `مرحبًا ${user.name}!`;
+            }
+        };
+
+        // دالة تسجيل الخروج
+        function logout() {
+            localStorage.removeItem('user');
+            window.location.href = '/index.html';
+        }

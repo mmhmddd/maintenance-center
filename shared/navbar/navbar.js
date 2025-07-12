@@ -1,3 +1,5 @@
+logoutbtn=document.getElementById('logout_button') ;
+
 document.addEventListener('DOMContentLoaded', () => {
     // Highlight active link
     const navLinks = document.querySelectorAll('.nav-link, .dropdown-item');
@@ -35,3 +37,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+
+        // دالة تسجيل الخروج
+        function logout() {
+            localStorage.removeItem('user');
+            window.location.href = '/index.html';
+        }
