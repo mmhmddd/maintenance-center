@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Check token and toggle logout button
     const user = JSON.parse(localStorage.getItem('user'));
-    const logoutButton = document.getElementById('logout_button');
+    const logoutButton = document.getElementById('logoutButton'); // Fixed ID
     if (logoutButton) {
         if (!user || !user.token) {
             logoutButton.style.display = 'none';
@@ -34,9 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// دالة تسجيل الخروج
+// Logout function
 function logout() {
     localStorage.removeItem('user');
     window.location.href = '/index.html';
 }
-
