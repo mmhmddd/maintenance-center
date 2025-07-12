@@ -1,8 +1,6 @@
-logoutbtn=document.getElementById('logout_button') ;
-
 document.addEventListener('DOMContentLoaded', () => {
     // Highlight active link
-    const navLinks = document.querySelectorAll('.nav-link, .dropdown-item');
+    const navLinks = document.querySelectorAll('.nav-link');
     const currentPath = window.location.pathname;
 
     navLinks.forEach(link => {
@@ -24,23 +22,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Handle dropdown submenu hover
-    const dropdowns = document.querySelectorAll('.dropdown-submenu');
-    dropdowns.forEach(dropdown => {
-        dropdown.addEventListener('mouseenter', () => {
-            const menu = dropdown.querySelector('.dropdown-menu');
-            menu.style.display = 'block';
-        });
-        dropdown.addEventListener('mouseleave', () => {
-            const menu = dropdown.querySelector('.dropdown-menu');
-            menu.style.display = 'none';
-        });
-    });
+    // Check token and toggle logout button
+    const user = JSON.parse(localStorage.getItem('user'));
+    const logoutButton = document.getElementById('logout_button');
+    if (logoutButton) {
+        if (!user || !user.token) {
+            logoutButton.style.display = 'none';
+        } else {
+            logoutButton.style.display = 'block';
+        }
+    }
 });
 
+// دالة تسجيل الخروج
+function logout() {
+    localStorage.removeItem('user');
+    window.location.href = '/index.html';
+}
 
-        // دالة تسجيل الخروج
-        function logout() {
-            localStorage.removeItem('user');
-            window.location.href = '/index.html';
-        }

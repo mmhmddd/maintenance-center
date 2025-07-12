@@ -624,3 +624,18 @@ select.is-valid ~ .valid-feedback,
 select.is-invalid ~ .invalid-feedback {
     display: block;
 }
+.submit-btn.loading .spinner {
+    display: inline-block;
+    border: 2px solid #fff;
+    border-top: 2px solid transparent;
+    border-radius: 50%;
+    width: 1.5em;
+    height: 1.5em;
+    animation: spin 1s linear infinite;
+    margin-right: 0.5em;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

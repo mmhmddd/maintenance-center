@@ -97,7 +97,7 @@
                         localStorage.setItem('user', JSON.stringify(userData));
 
                         // Set timer to remove token after 2 minutes (120,000 ms)
-                        setTimeout(() => {
+                        const timeoutId = setTimeout(() => {
                             localStorage.removeItem('user');
                             Toastify({
                                 text: 'جلستك انتهت، يرجى تسجيل الدخول مرة أخرى.',
@@ -123,6 +123,9 @@
                         setTimeout(() => {
                             window.location.href = redirect || '/index.html';
                         }, 3000);
+
+                        // Optional: Store timeoutId globally to clear it if needed
+                        window.logoutTimeout = timeoutId;
                     } else {
                         showError('password', 'كلمة المرور غير صحيحة');
                         Toastify({

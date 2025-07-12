@@ -254,11 +254,11 @@ document.getElementById('mainForm').addEventListener('submit', function(e) {
     if (!validateForm()) {
         // عرض رسالة خطأ
         const errorDiv = document.createElement('div');
-        errorDiv.className = 'alert alert-error';
+        errorDiv.className = 'alert alert-danger';
         errorDiv.textContent = 'يرجى ملء جميع الحقول المطلوبة بشكل صحيح';
         
         // إزالة أي رسائل خطأ موجودة
-        const existingError = document.querySelector('.alert-error');
+        const existingError = document.querySelector('.alert-danger');
         if (existingError) {
             existingError.remove();
         }
@@ -341,18 +341,27 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-        // التحقق من التوكن
-        window.onload = function() {
-            const user = JSON.parse(localStorage.getItem('user'));
-            if (!user || !user.token) {
-                window.location.href = `/auth/login/login.html?redirect=/pages/booking/booking.html`;
-            } else {
-                document.getElementById('userInfo').innerText = `مرحبًا ${user.name}!`;
-            }
-        };
+// التحقق من التوكن بعد تحميل الـ navbar
+function checkTokenAfterNavbar() {
+    const user = JSON.parse(localStorage.getItem('user'));
+    const userInfo = document.getElementById('userInfo');
+    const logoutButton = document.getElementById('logoutButton');
 
-        // دالة تسجيل الخروج
-        function logout() {
-            localStorage.removeItem('user');
-            window.location.href = '/index.html';
+    if (!user || !user.token) {
+        if (userInfo) userInfo.style.display = 'none';
+        if (logoutButton) logoutButton.style.display = 'none';
+        window.location.href = `/auth/login/login.html?redirect=/pages/booking/booking.html`;
+    } else {
+        if (userInfo) {
+            userInfo.style.display = 'block';
+            userInfo.innerText = `مرحبًا ${user.name}!`;
         }
+        if (logoutButton) logoutButton.style.display = 'block';
+    }
+}
+
+// دالة تسجيل الخروج
+function logout() {
+    localStorage.removeItem('user');
+    window.location.href = '/index.html';
+}

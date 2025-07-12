@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Form submission
-    form.addEventListener('cen', async function(e) {
+    form.addEventListener('submit', async function(e) {
         e.preventDefault();
         
         if (!validateForm()) {
@@ -185,17 +185,17 @@ document.addEventListener('DOMContentLoaded', function() {
             // Prepare WhatsApp message
             const formData = new FormData(form);
             const message = `
-رسالة جديدة من النموذج:
-الاسم: ${formData.get('name')}
-البريد الإلكتروني: ${formData.get('email')}
-رقم الهاتف: ${formData.get('phone')}
-الموضوع: ${formData.get('subject')}
-الرسالة: ${formData.get('message')}
-            `.trim();
+            رسالة جديدة من النموذج:
+            الاسم: ${formData.get('name')}
+            البريد الإلكتروني: ${formData.get('email')}
+            رقم الهاتف: ${formData.get('phone')}
+            الموضوع: ${formData.get('subject')}
+            الرسالة: ${formData.get('message')}
+                        `.trim();
             
             // Encode message for WhatsApp URL
             const encodedMessage = encodeURIComponent(message);
-            const whatsappUrl = `https://wa.me/+20113631968?text=${encodedMessage}`;
+            const whatsappUrl = `https://wa.me/+966577659202?text=${encodedMessage}`;
             
             // Open WhatsApp in a new tab
             window.open(whatsappUrl, '_blank');
@@ -337,7 +337,7 @@ function updateCurrentTime() {
         day: 'numeric',
         hour: '2-digit',
         minute: '2-digit',
-        timeZone: 'Africa/Cairo'
+        timeZone: 'Asia/Riyadh'
     };
     
     const timeString = now.toLocaleDateString('ar-SA', options);
@@ -354,7 +354,7 @@ function updateCurrentTime() {
         heroSection.appendChild(timeDisplay);
     }
     
-    timeDisplay.innerHTML = `<i class="fas fa-clock me-2"></i>${timeString} (توقيت القاهرة)`;
+    timeDisplay.innerHTML = `<i class="fas fa-clock me-2"></i>${timeString} (توقيت المدينة المنورة)`;
 }
 
 // Update time every minute

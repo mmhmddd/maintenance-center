@@ -19,8 +19,14 @@
     <!-- Hero Section -->
     <section class="hero-section">
         <div class="hero-content">
+            <img src="/assets/images/home/logo2.png" style="width: 200px; height: 200px;" alt="">
+
             <h1 class="hero-title">خدمة الصيانة المتخصصة</h1>
             <p class="hero-subtitle">احجز موعداً مع خبرائنا المعتمدين لصيانة جميع أجهزتك المنزلية بكفاءة عالية وسرعة فائقة</p>
+            <p id="userInfo" style="display: none; color: var(--white); font-weight: 600;"></p>
+            <div id="logoutButton" style="display: none; margin-top: 10px;">
+                <button class="btn btn-danger" onclick="logout()">تسجيل الخروج</button>
+            </div>
         </div>
     </section>
 
@@ -52,7 +58,7 @@
                         <i class="fas fa-snowflake device-icon"></i>
                         <h3 class="device-title">تكييف الهواء</h3>
                         <p class="device-description">صيانة وتنظيف وإصلاح جميع أنواع مكيفات الهواء المنزلية والمكتبية</p>
-                        <button class="btn-primary" onclick="selectDevice('تكييف الهواء', 'fas fa-snowflake')">
+                        <button class="btn btn-primary" onclick="selectDevice('تكييف الهواء', 'fas fa-snowflake')">
                             احجز الآن
                             <i class="fas fa-arrow-left"></i>
                         </button>
@@ -62,7 +68,7 @@
                         <i class="fas fa-cube device-icon"></i>
                         <h3 class="device-title">ثلاجات وفريزر</h3>
                         <p class="device-description">إصلاح وصيانة الثلاجات والفريزر من جميع الماركات العالمية</p>
-                        <button class="btn-primary" onclick="selectDevice('ثلاجات وفريزر', 'fas fa-cube')">
+                        <button class="btn btn-primary" onclick="selectDevice('ثلاجات وفريزر', 'fas fa-cube')">
                             احجز الآن
                             <i class="fas fa-arrow-left"></i>
                         </button>
@@ -72,7 +78,7 @@
                         <i class="fas fa-tshirt device-icon"></i>
                         <h3 class="device-title">غسالات</h3>
                         <p class="device-description">صيانة شاملة لجميع أنواع الغسالات العادية والأوتوماتيكية</p>
-                        <button class="btn-primary" onclick="selectDevice('غسالات', 'fas fa-tshirt')">
+                        <button class="btn btn-primary" onclick="selectDevice('غسالات', 'fas fa-tshirt')">
                             احجز الآن
                             <i class="fas fa-arrow-left"></i>
                         </button>
@@ -82,7 +88,7 @@
                         <i class="fas fa-tools device-icon"></i>
                         <h3 class="device-title">أجهزة أخرى</h3>
                         <p class="device-description">صيانة جميع الأجهزة المنزلية الأخرى مثل المايكرويف والخلاط والمزيد</p>
-                        <button class="btn-primary" onclick="selectDevice('أجهزة أخرى', 'fas fa-tools')">
+                        <button class="btn btn-primary" onclick="selectDevice('أجهزة أخرى', 'fas fa-tools')">
                             احجز الآن
                             <i class="fas fa-arrow-left"></i>
                         </button>
@@ -99,36 +105,44 @@
                 <p class="form-subtitle">يرجى ملء جميع البيانات المطلوبة لتأكيد موعد الصيانة</p>
 
                 <form id="mainForm" autocomplete="on">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="name" class="form-label">
-                                <i class="fas fa-user"></i> الاسم الكامل
-                            </label>
-                            <input type="text" id="name" name="name" class="form-control" placeholder="أدخل اسمك الكامل" autocomplete="name" required>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="name" class="form-label">
+                                    <i class="fas fa-user"></i> الاسم الكامل
+                                </label>
+                                <input type="text" id="name" name="name" class="form-control" placeholder="أدخل اسمك الكامل" autocomplete="name" required>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="email" class="form-label">
-                                <i class="fas fa-envelope"></i> البريد الإلكتروني
-                            </label>
-                            <input type="email" id="email" name="email" class="form-control" placeholder="example@email.com" autocomplete="email" required>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="email" class="form-label">
+                                    <i class="fas fa-envelope"></i> البريد الإلكتروني
+                                </label>
+                                <input type="email" id="email" name="email" class="form-control" placeholder="example@email.com" autocomplete="email" required>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="phone" class="form-label">
-                                <i class="fas fa-phone"></i> رقم الهاتف
-                            </label>
-                            <input type="tel" id="phone" name="tel" class="form-control" placeholder="+9665xxxxxxxx" autocomplete="tel" required>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="phone" class="form-label">
+                                    <i class="fas fa-phone"></i> رقم الهاتف
+                                </label>
+                                <input type="tel" id="phone" name="tel" class="form-control" placeholder="+9665xxxxxxxx" autocomplete="tel" required>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="city" class="form-label">
-                                <i class="fas fa-map-marker-alt"></i> المدينة
-                            </label>
-                            <select id="city" name="address-level2" class="form-control" autocomplete="address-level2" required>
-                                <option value="">اختر المدينة</option>
-                                <option value="المدينة المنورة">المدينة المنورة</option>
-                            </select>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="city" class="form-label">
+                                    <i class="fas fa-map-marker-alt"></i> المدينة
+                                </label>
+                                <select id="city" name="address-level2" class="form-control" autocomplete="address-level2" required>
+                                    <option value="">اختر المدينة</option>
+                                    <option value="المدينة المنورة">المدينة المنورة</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
 
@@ -139,29 +153,33 @@
                         <input type="text" id="address" name="street-address" class="form-control" placeholder="الشارع، رقم المبنى، الحي" autocomplete="street-address" required>
                     </div>
 
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="appointmentDate" class="form-label">
-                                <i class="fas fa-calendar-alt"></i> تاريخ الموعد
-                            </label>
-                            <input type="date" id="appointmentDate" name="appointment-date" class="form-control" required>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="appointmentDate" class="form-label">
+                                    <i class="fas fa-calendar-alt"></i> تاريخ الموعد
+                                </label>
+                                <input type="date" id="appointmentDate" name="appointment-date" class="form-control" required>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="appointmentTime" class="form-label">
-                                <i class="fas fa-clock"></i> وقت الموعد
-                            </label>
-                            <select id="appointmentTime" name="appointment-time" class="form-control" required>
-                                <option value="">اختر الوقت</option>
-                                <option value="09:00">9:00 صباحاً</option>
-                                <option value="10:00">10:00 صباحاً</option>
-                                <option value="11:00">11:00 صباحاً</option>
-                                <option value="12:00">12:00 ظهراً</option>
-                                <option value="13:00">1:00 مساءً</option>
-                                <option value="14:00">2:00 مساءً</option>
-                                <option value="15:00">3:00 مساءً</option>
-                                <option value="16:00">4:00 مساءً</option>
-                                <option value="17:00">5:00 مساءً</option>
-                            </select>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="appointmentTime" class="form-label">
+                                    <i class="fas fa-clock"></i> وقت الموعد
+                                </label>
+                                <select id="appointmentTime" name="appointment-time" class="form-control" required>
+                                    <option value="">اختر الوقت</option>
+                                    <option value="09:00">9:00 صباحاً</option>
+                                    <option value="10:00">10:00 صباحاً</option>
+                                    <option value="11:00">11:00 صباحاً</option>
+                                    <option value="12:00">12:00 ظهراً</option>
+                                    <option value="13:00">1:00 مساءً</option>
+                                    <option value="14:00">2:00 مساءً</option>
+                                    <option value="15:00">3:00 مساءً</option>
+                                    <option value="16:00">4:00 مساءً</option>
+                                    <option value="17:00">5:00 مساءً</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
 
@@ -190,11 +208,11 @@
                     </div>
 
                     <div class="form-actions">
-                        <button type="submit" class="btn-success">
+                        <button type="submit" class="btn btn-success">
                             <span class="btn-text">تأكيد الحجز</span>
                             <i class="fas fa-check"></i>
                         </button>
-                        <button type="button" class="btn-secondary" onclick="goBack()">
+                        <button type="button" class="btn btn-secondary" onclick="goBack()">
                             <i class="fas fa-arrow-right"></i> العودة للخلف
                         </button>
                     </div>
@@ -226,13 +244,13 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-center gap-3 mb-4">
-                        <button class="btn-primary" onclick="resetAll()">
+                        <button class="btn btn-primary" onclick="resetAll()">
                             <i class="fas fa-plus"></i> حجز موعد جديد
                         </button>
-                        <button class="btn-secondary" onclick="downloadConfirmation()">
+                        <button class="btn btn-secondary" onclick="downloadConfirmation()">
                             <i class="fas fa-download"></i> تحميل التأكيد
                         </button>
-                        <button class="btn-success" onclick="sendConfirmationMessage()">
+                        <button class="btn btn-success" onclick="sendConfirmationMessage()">
                             <i class="fas fa-paper-plane"></i> تأكيد الحجز
                         </button>
                     </div>
@@ -248,7 +266,10 @@
         // Load Navbar
         fetch('/shared/navbar/navbar.html')
             .then(response => response.text())
-            .then(data => document.getElementById('navbar-placeholder').innerHTML = data)
+            .then(data => {
+                document.getElementById('navbar-placeholder').innerHTML = data;
+                checkTokenAfterNavbar(); // التحقق من التوكن بعد تحميل الـ navbar
+            })
             .catch(error => console.error('خطأ في تحميل شريط التنقل:', error));
 
         // Load Footer
@@ -257,5 +278,4 @@
             .then(data => document.getElementById('footer-placeholder').innerHTML = data)
             .catch(error => console.error('خطأ في تحميل تذييل الصفحة:', error));
     </script>
-</body>
-</html>
+
