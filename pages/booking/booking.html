@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="簡體中文">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>حجز موعد صيانة | دليل الأمان للصيانة - المدينة المنورة</title>
     <meta name="description" content="احجز موعد صيانة مكيفات، ثلاجات، غسالات، وأجهزة منزلية في المدينة المنورة مع دليل الأمان للصيانة. خدمة سريعة وضمان 6 أشهر.">
@@ -65,6 +65,16 @@
             border: 0;
         }
 
+        .map-preview.error {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8d7da;
+            color: #721c24;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
         .form-container {
             max-width: 700px;
             margin: 0 auto;
@@ -123,7 +133,16 @@
                     <div class="device-card h-100">
                         <i class="fas fa-snowflake device-icon"></i>
                         <h3 class="device-title">تكييف الهواء</h3>
-                        <p class="device-description">صيانة وتنظيف وإصلاح جميع أنواع مكيفات الهواء</p>
+                        <p class="device-description">صيانة وتغيير قطع غيار وإصلاح جميع أنواع مكيفات الهواء</p>
+                        <button class="btn btn-primary" onclick="selectDevice('تكييف الهواء', 'fas fa-snowflake')">
+                            احجز الآن
+                            <i class="fas fa-arrow-left"></i>
+                        </button>
+                    </div>
+                    <div class="device-card h-100">
+                        <i class="fas fa-snowflake device-icon"></i>
+                        <h3 class="device-title">تكييف الهواء</h3>
+                        <p class="device-description"> تنظيف وإصلاح فلاتر الهواء لجميع أنواع مكيفات الهواء</p>
                         <button class="btn btn-primary" onclick="selectDevice('تكييف الهواء', 'fas fa-snowflake')">
                             احجز الآن
                             <i class="fas fa-arrow-left"></i>
@@ -343,16 +362,46 @@
         function updateMapPreview() {
             const addressInput = document.getElementById('address');
             const mapPreview = document.getElementById('mapPreview');
-            const urlRegex = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/;
+            const addressError = document.getElementById('address-error');
+            // تحسين التحقق ليشمل روابط خرائط جوجل فقط
+            const googleMapsRegex = /^https?:\/\/(www\.)?google\.com\/maps\/.*$/;
             
             addressInput.addEventListener('input', function() {
                 const address = addressInput.value.trim();
-                if (address && address.startsWith('http') && urlRegex.test(address)) {
-                    mapPreview.innerHTML = `<iframe src="${address}" allowfullscreen></iframe>`;
+                mapPreview.classList.remove('error');
+                addressError.textContent = '';
+                
+                if (address && address.startsWith('http') && googleMapsRegex.test(address)) {
+                    // محاولة تحويل الرابط إلى صيغة embed
+                    let embedUrl = '';
+                    // استخراج الإحداثيات من الرابط (مثل @24.5246542,39.5691841)
+                    const coordsMatch = address.match(/@([-]?\d+\.\d+),([-]?\d+\.\d+)/);
+                    // استخراج معرف المكان (place ID) إذا كان موجودًا
+                    const placeIdMatch = address.match(/!1s([^!]+)!/);
+                    
+                    if (coordsMatch) {
+                        const lat = coordsMatch[1];
+                        const lng = coordsMatch[2];
+                        embedUrl = `https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d4000!2d${lng}!3d${lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0`;
+                    } else if (placeIdMatch) {
+                        const placeId = placeIdMatch[1];
+                        embedUrl = `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4000!2d0!3d0!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s${placeId}!2s!5e0`;
+                    } else {
+                        // إذا لم يتم العثور على إحداثيات أو معرف مكان
+                        mapPreview.classList.add('error');
+                        mapPreview.innerHTML = 'رابط خرائط جوجل غير صالح. يرجى نسخ رابط صحيح.';
+                        return;
+                    }
+                    
+                    mapPreview.innerHTML = `<iframe src="${embedUrl}" allowfullscreen loading="lazy"></iframe>`;
                     mapPreview.classList.remove('hidden');
                 } else {
                     mapPreview.innerHTML = '';
                     mapPreview.classList.add('hidden');
+                    if (address && address.startsWith('http')) {
+                        mapPreview.classList.add('error');
+                        mapPreview.innerHTML = 'رابط خرائط جوجل غير صالح. يرجى نسخ رابط من خرائط جوجل.';
+                    }
                 }
             });
         }
@@ -482,9 +531,9 @@
             
             // التحقق من حقل العنوان (إذا تم إدخاله)
             const address = document.getElementById('address').value.trim();
-            const urlRegex = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/;
-            if (address && address.startsWith('http') && !urlRegex.test(address)) {
-                showError('address', 'رابط الموقع غير صالح');
+            const googleMapsRegex = /^https?:\/\/(www\.)?google\.com\/maps\/.*$/;
+            if (address && address.startsWith('http') && !googleMapsRegex.test(address)) {
+                showError('address', 'رابط خرائط جوجل غير صالح');
                 isValid = false;
             }
             

@@ -308,31 +308,31 @@
             });
 
             // Current time display
-            function updateCurrentTime() {
-                const now = new Date();
-                const options = {
-                    weekday: 'long',
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric',
-                    hour: '2-digit',
-                    minute: '2-digit',
-                    timeZone: 'Asia/Riyadh'
-                };
-                const timeString = now.toLocaleDateString('ar-SA', options);
-                const heroSection = document.querySelector('.hero-section .container');
-                let timeDisplay = document.querySelector('.current-time');
+        function updateCurrentTime() {
+    const now = new Date();
+    const options = {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        timeZone: 'Asia/Riyadh',
+        calendar: 'gregory' // Explicitly use Gregorian calendar
+    };
+    const timeString = now.toLocaleDateString('ar-SA', options);
+    const heroSection = document.querySelector('.hero-section .container');
+    let timeDisplay = document.querySelector('.current-time');
 
-                if (!timeDisplay) {
-                    timeDisplay = document.createElement('div');
-                    timeDisplay.className = 'current-time mt-3';
-                    timeDisplay.style.opacity = '0.8';
-                    timeDisplay.style.fontSize = '0.9rem';
-                    heroSection.appendChild(timeDisplay);
-                }
-                timeDisplay.innerHTML = `<i class="fas fa-clock me-2"></i>${timeString} (توقيت المدينة المنورة)`;
-            }
-
+    if (!timeDisplay) {
+        timeDisplay = document.createElement('div');
+        timeDisplay.className = 'current-time mt-3';
+        timeDisplay.style.opacity = '0.8';
+        timeDisplay.style.fontSize = '0.9rem';
+        heroSection.appendChild(timeDisplay);
+    }
+    timeDisplay.innerHTML = `<i class="fas fa-clock me-2"></i>${timeString} (توقيت المدينة المنورة)`;
+}
             updateCurrentTime();
             setInterval(updateCurrentTime, 60000);
         });

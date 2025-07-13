@@ -84,6 +84,8 @@
             document.getElementById('loader-overlay').style.display = 'none';
         }
 
+        let isRedirecting = false; // Flag to prevent beforeunload from clearing during redirect
+
         window.login = async function() {
             const phone = document.getElementById('phone').value;
 
@@ -101,6 +103,8 @@
                 showLoader();
                 const q = query(collection(db, "users"), where("phone", "==", phone));
                 const querySnapshot = await getDocs(q);
+                console.log('Query Snapshot:', querySnapshot.size, querySnapshot.docs); // Debug log
+
                 if (!querySnapshot.empty) {
                     const userDoc = querySnapshot.docs[0].data();
                     const token = Math.random().toString(36).substr(2) + Date.now().toString(36);
@@ -111,6 +115,7 @@
                         address: userDoc.address
                     };
                     localStorage.setItem('user', JSON.stringify(userData));
+                    console.log('User stored in localStorage:', userData); // Debug log
 
                     // Set timer to remove token after 2 minutes (120,000 ms)
                     const timeoutId = setTimeout(() => {
@@ -136,11 +141,13 @@
                     }).showToast();
 
                     const redirect = new URLSearchParams(window.location.search).get('redirect');
+                    console.log('Redirecting to:', redirect || '/index.html'); // Debug log
+                    isRedirecting = true; // Set flag to prevent beforeunload
                     setTimeout(() => {
                         window.location.href = redirect || '/index.html';
                     }, 3000);
 
-                    // Optional: Store timeoutId globally to clear it if needed
+                    // Store timeoutId globally to clear it if needed
                     window.logoutTimeout = timeoutId;
                 } else {
                     hideLoader();
@@ -156,6 +163,7 @@
                 }
             } catch (error) {
                 hideLoader();
+                console.error('Login error:', error); // Debug log
                 Toastify({
                     text: 'خطأ أثناء تسجيل الدخول: ' + error.message,
                     duration: 5000,
@@ -167,9 +175,22 @@
             }
         };
 
+        // Clear token when tab is closed, unless redirecting
+        window.addEventListener('beforeunload', () => {
+            if (!isRedirecting) {
+                console.log('beforeunload triggered, clearing user data'); // Debug log
+                localStorage.removeItem('user');
+                if (window.logoutTimeout) {
+                    clearTimeout(window.logoutTimeout);
+                }
+            }
+        });
+
         window.onload = function() {
             const user = JSON.parse(localStorage.getItem('user'));
+            console.log('Onload user check:', user); // Debug log
             if (user && user.token) {
+                isRedirecting = true; // Prevent beforeunload during onload redirect
                 window.location.href = '/index.html';
             }
         };
