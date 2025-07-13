@@ -33,16 +33,45 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Toggle navbar collapse on toggler click
+    // Navbar toggle fix
     const navbarToggler = document.querySelector('.navbar-toggler');
     const navbarCollapse = document.querySelector('#navbarNav');
 
-    navbarToggler.addEventListener('click', () => {
-        // Toggle the 'show' class on the collapse element
-        navbarCollapse.classList.toggle('show');
-        // Update aria-expanded attribute
-        const isExpanded = navbarToggler.getAttribute('aria-expanded') === 'true';
-        navbarToggler.setAttribute('aria-expanded', !isExpanded);
+    if (navbarToggler && navbarCollapse) {
+        navbarToggler.addEventListener('click', () => {
+            const isExpanded = navbarCollapse.classList.contains('show');
+            if (isExpanded) {
+                navbarCollapse.classList.remove('show');
+                navbarToggler.setAttribute('aria-expanded', 'false');
+            } else {
+                navbarCollapse.classList.add('show');
+                navbarToggler.setAttribute('aria-expanded', 'true');
+            }
+        });
+    }
+
+    // Animation on scroll
+    const observerOptions = {
+        threshold: 0.2,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate__animated');
+                const delay = entry.target.getAttribute('data-animation-delay');
+                if (delay) {
+                    entry.target.style.animationDelay = delay;
+                }
+                entry.target.classList.add(entry.target.classList.contains('section-title') ? 'animate__fadeInDown' : 'animate__fadeInUp');
+            }
+        });
+    }, observerOptions);
+
+    // Observe animated elements
+    document.querySelectorAll('.section-title, .service-card').forEach(el => {
+        observer.observe(el);
     });
 });
 
