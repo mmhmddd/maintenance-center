@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="簡體中文">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>حجز موعد صيانة | دليل الأمان للصيانة - المدينة المنورة</title>
     <meta name="description" content="احجز موعد صيانة مكيفات، ثلاجات، غسالات، وأجهزة منزلية في المدينة المنورة مع دليل الأمان للصيانة. خدمة سريعة وضمان 6 أشهر.">
@@ -21,18 +21,64 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Google Fonts for Tajawal -->
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="booking.css">
     <link rel="stylesheet" href="/shared/navbar/navbar.css">
     <link rel="stylesheet" href="/shared/footer/footer.css">
     <link rel="shortcut icon" href="/assets/images/home/logo.png" type="image/x-icon">
 
     <style>
+        .input-group .btn-outline-primary {
+            border-radius: 0 0.375rem 0.375rem 0;
+        }
 
+        .input-group .form-control {
+            border-radius: 0.375rem 0 0 0.375rem;
+        }
+
+        .input-group .btn-outline-primary i {
+            margin-left: 5px;
+        }
+
+        .form-text {
+            font-size: 0.9rem;
+            color: var(--gray-600);
+            margin-top: 0.25rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .map-preview {
+            margin-top: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 0.375rem;
+            overflow: hidden;
+            height: 200px;
+        }
+
+        .map-preview iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .form-container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: #fff;
+            border-radius: var(--border-radius-lg);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
     </style>
 </head>
 <body>
@@ -42,7 +88,7 @@
         <div class="hero-content">
             <img src="/assets/images/home/logo2.png" style="width: 200px; height: 200px;" alt="">
             <h1 class="hero-title">خدمة الصيانة المتخصصة</h1>
-            <p class="hero-subtitle">احجز موعداً مع خبرائنا المعتمدين لصيانة جميع أجهزتك المنزلية بكفاءة عالية وسرعة فائقة</p>
+            <p class="hero-subtitle">احجز موعدك بسهولة لصيانة أجهزتك الكهربائية بكفاءة وسرعة</p>
             <p id="userInfo" style="display: none; color: var(--white); font-weight: 600;"></p>
             <div id="logoutButton" style="display: none; margin-top: 10px;">
                 <button class="btn btn-danger" onclick="logout()">تسجيل الخروج</button>
@@ -77,7 +123,7 @@
                     <div class="device-card h-100">
                         <i class="fas fa-snowflake device-icon"></i>
                         <h3 class="device-title">تكييف الهواء</h3>
-                        <p class="device-description">صيانة وتنظيف وإصلاح جميع أنواع مكيفات الهواء المنزلية والمكتبية</p>
+                        <p class="device-description">صيانة وتنظيف وإصلاح جميع أنواع مكيفات الهواء</p>
                         <button class="btn btn-primary" onclick="selectDevice('تكييف الهواء', 'fas fa-snowflake')">
                             احجز الآن
                             <i class="fas fa-arrow-left"></i>
@@ -86,7 +132,7 @@
                     <div class="device-card h-100">
                         <i class="fas fa-cube device-icon"></i>
                         <h3 class="device-title">ثلاجات وفريزر</h3>
-                        <p class="device-description">إصلاح وصيانة الثلاجات والفريزر من جميع الماركات العالمية</p>
+                        <p class="device-description">إصلاح وصيانة الثلاجات والفريزر</p>
                         <button class="btn btn-primary" onclick="selectDevice('ثلاجات وفريزر', 'fas fa-cube')">
                             احجز الآن
                             <i class="fas fa-arrow-left"></i>
@@ -95,7 +141,7 @@
                     <div class="device-card h-100">
                         <i class="fas fa-tshirt device-icon"></i>
                         <h3 class="device-title">غسالات</h3>
-                        <p class="device-description">صيانة شاملة لجميع أنواع الغسالات العادية والأوتوماتيكية</p>
+                        <p class="device-description">صيانة الغسالات العادية والأوتوماتيكية</p>
                         <button class="btn btn-primary" onclick="selectDevice('غسالات', 'fas fa-tshirt')">
                             احجز الآن
                             <i class="fas fa-arrow-left"></i>
@@ -104,7 +150,7 @@
                     <div class="device-card h-100">
                         <i class="fas fa-tools device-icon"></i>
                         <h3 class="device-title">أجهزة أخرى</h3>
-                        <p class="device-description">صيانة جميع الأجهزة المنزلية الأخرى مثل المايكرويف والخلاط والمزيد</p>
+                        <p class="device-description">صيانة المايكرويف، الخلاط، وغيرها</p>
                         <button class="btn btn-primary" onclick="selectDevice('أجهزة أخرى', 'fas fa-tools')">
                             احجز الآن
                             <i class="fas fa-arrow-left"></i>
@@ -119,7 +165,7 @@
                     <i id="selectedDeviceIcon" class="fas fa-snowflake"></i>
                     حجز موعد صيانة - <span id="selectedDeviceType">تكييف الهواء</span>
                 </div>
-                <p class="form-subtitle">يرجى ملء جميع البيانات المطلوبة لتأكيد موعد الصيانة</p>
+                <p class="form-subtitle">املأ البيانات التالية لتأكيد موعد الصيانة</p>
 
                 <form id="mainForm" autocomplete="on">
                     <div class="row">
@@ -145,9 +191,16 @@
 
                     <div class="form-group">
                         <label for="address" class="form-label">
-                            <i class="fas fa-home"></i> العنوان التفصيلي
+                            <i class="fas fa-home"></i> العنوان التفصيلي (اختياري)
                         </label>
-                        <input type="text" id="address" name="street-address" class="form-control" placeholder="الشارع، رقم المبنى، الحي" autocomplete="street-address" required>
+                        <div class="input-group">
+                            <input type="text" id="address" name="street-address" class="form-control" placeholder="أدخل العنوان يدويًا أو انسخ رابط خرائط جوجل" autocomplete="street-address">
+                            <button type="button" class="btn btn-outline-primary" onclick="openGoogleMaps()">
+                                <i class="fas fa-map-marker-alt"></i> اختر الموقع
+                            </button>
+                        </div>
+                        <small class="form-text">لتحديد الموقع: انقر على "اختر الموقع"، اختر موقعك على خرائط جوجل، انسخ الرابط من شريط العنوان، ثم الصقه هنا. يمكنك أيضًا إدخال العنوان يدويًا.</small>
+                        <div id="mapPreview" class="map-preview hidden"></div>
                         <span id="address-error" class="error-message"></span>
                     </div>
 
@@ -168,10 +221,10 @@
                                 </label>
                                 <select id="appointmentTime" name="appointment-time" class="form-control" required>
                                     <option value="">اختر الوقت</option>
-                                    <option value="09:00">9:00 صباحاً</option>
-                                    <option value="10:00">10:00 صباحاً</option>
-                                    <option value="11:00">11:00 صباحاً</option>
-                                    <option value="12:00">12:00 ظهراً</option>
+                                    <option value="09:00">9:00 صباحًا</option>
+                                    <option value="10:00">10:00 صباحًا</option>
+                                    <option value="11:00">11:00 صباحًا</option>
+                                    <option value="12:00">12:00 ظهرًا</option>
                                     <option value="13:00">1:00 مساءً</option>
                                     <option value="14:00">2:00 مساءً</option>
                                     <option value="15:00">3:00 مساءً</option>
@@ -184,27 +237,10 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="brand" class="form-label">
-                            <i class="fas fa-tag"></i> ماركة الجهاز (اختياري)
-                        </label>
-                        <select id="brand" name="brand" class="form-control">
-                            <option value="">اختر الماركة</option>
-                            <option value="سامسونج">سامسونج</option>
-                            <option value="إل جي">إل جي</option>
-                            <option value="شارب">شارب</option>
-                            <option value="كاريير">كاريير</option>
-                            <option value="يونيون إير">يونيون إير</option>
-                            <option value="وايت ويل">وايت ويل</option>
-                            <option value="بوش">بوش</option>
-                            <option value="أخرى">أخرى</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
                         <label for="problem" class="form-label">
                             <i class="fas fa-exclamation-triangle"></i> وصف المشكلة (اختياري)
                         </label>
-                        <textarea id="problem" name="problem" class="form-control" rows="4" placeholder="اشرح المشكلة التي تواجهها مع الجهاز بالتفصيل..."></textarea>
+                        <textarea id="problem" name="problem" class="form-control" rows="3" placeholder="اشرح المشكلة التي تواجهها مع الجهاز..."></textarea>
                     </div>
 
                     <div class="form-actions">
@@ -213,19 +249,19 @@
                             <i class="fas fa-check"></i>
                         </button>
                         <button type="button" class="btn btn-secondary" onclick="goBack()">
-                            <i class="fas fa-arrow-right"></i> العودة للخلف
+                            <i class="fas fa-arrow-right"></i> العودة
                         </button>
                     </div>
                 </form>
             </div>
 
-            <!-- Success Message with Booking Summary and Buttons -->
+            <!-- Success Message with Booking Summary -->
             <div class="form-container hidden" id="successMessage">
                 <div class="text-center">
                     <div class="success-checkmark">
                         <i class="fas fa-check" style="color: var(--gray-50); font-size: 2rem;"></i>
                     </div>
-                    <p style="color: var(--gray-600); margin-bottom: 1rem;">سيتم التواصل معك خلال 24 ساعة لتأكيد الموعد</p>
+                    <p style="color: var(--gray-600); margin-bottom: 1rem;">تم تسجيل حجزك! سيتم التواصل معك خلال 24 ساعة.</p>
                     <div class="card border-0 shadow-md mb-4" style="background: var(--gray-50); border-radius: var(--border-radius-lg);">
                         <div class="card-body">
                             <h4 class="card-title" style="color: var(--primary-blue-light); font-size: var(--font-size-lg);">تفاصيل الحجز</h4>
@@ -236,20 +272,19 @@
                                 <li><strong>العنوان:</strong> <span id="summaryAddress"></span></li>
                                 <li><strong>التاريخ:</strong> <span id="summaryDate"></span></li>
                                 <li><strong>الوقت:</strong> <span id="summaryTime"></span></li>
-                                <li><strong>الماركة:</strong> <span id="summaryBrand"></span></li>
                                 <li><strong>المشكلة:</strong> <span id="summaryProblem"></span></li>
                             </ul>
                         </div>
                     </div>
                     <div class="d-flex justify-content-center gap-3 mb-4">
                         <button class="btn btn-primary" onclick="resetAll()">
-                            <i class="fas fa-plus"></i> حجز موعد جديد
+                            <i class="fas fa-plus"></i> حجز جديد
                         </button>
                         <button class="btn btn-secondary" onclick="downloadConfirmation()">
                             <i class="fas fa-download"></i> تحميل التأكيد
                         </button>
                         <button class="btn btn-success" onclick="sendConfirmationMessage()">
-                            <i class="fas fa-paper-plane"></i> تأكيد الحجز
+                            <i class="fas fa-paper-plane"></i> إرسال عبر واتساب
                         </button>
                     </div>
                 </div>
@@ -286,6 +321,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             setMinDate();
             updateStepIndicator();
+            updateMapPreview();
         });
 
         // ضبط الحد الأدنى لتاريخ الموعد على الغد
@@ -295,6 +331,30 @@
             tomorrow.setDate(today.getDate() + 1);
             const minDate = tomorrow.toISOString().split('T')[0];
             document.getElementById('appointmentDate').setAttribute('min', minDate);
+        }
+
+        // فتح خرائط جوجل لتحديد الموقع
+        function openGoogleMaps() {
+            const googleMapsUrl = 'https://www.google.com/maps/@24.5246542,39.5691841,15z';
+            window.open(googleMapsUrl, '_blank');
+        }
+
+        // تحديث معاينة الخريطة بناءً على الرابط
+        function updateMapPreview() {
+            const addressInput = document.getElementById('address');
+            const mapPreview = document.getElementById('mapPreview');
+            const urlRegex = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/;
+            
+            addressInput.addEventListener('input', function() {
+                const address = addressInput.value.trim();
+                if (address && address.startsWith('http') && urlRegex.test(address)) {
+                    mapPreview.innerHTML = `<iframe src="${address}" allowfullscreen></iframe>`;
+                    mapPreview.classList.remove('hidden');
+                } else {
+                    mapPreview.innerHTML = '';
+                    mapPreview.classList.add('hidden');
+                }
+            });
         }
 
         // تحديث مؤشر الخطوات
@@ -361,8 +421,9 @@
             document.getElementById('bookingForm').classList.add('hidden');
             document.getElementById('deviceSelection').style.display = 'block';
             document.getElementById('mainForm').reset();
+            document.getElementById('mapPreview').innerHTML = '';
+            document.getElementById('mapPreview').classList.add('hidden');
             
-            // Clear all error messages
             ['name', 'phone', 'address', 'appointmentDate', 'appointmentTime'].forEach(clearError);
             
             currentStep = 1;
@@ -395,7 +456,6 @@
             const requiredFields = [
                 { id: 'name', error: 'الاسم الكامل مطلوب' },
                 { id: 'phone', error: 'رقم الهاتف مطلوب' },
-                { id: 'address', error: 'العنوان التفصيلي مطلوب' },
                 { id: 'appointmentDate', error: 'تاريخ الموعد مطلوب' },
                 { id: 'appointmentTime', error: 'وقت الموعد مطلوب' }
             ];
@@ -417,6 +477,14 @@
             const phoneRegex = /^05[0-9]{8}$/;
             if (phone && !phoneRegex.test(phone)) {
                 showError('phone', 'رقم الهاتف يجب أن يبدأ بـ 05 ويتكون من 10 أرقام');
+                isValid = false;
+            }
+            
+            // التحقق من حقل العنوان (إذا تم إدخاله)
+            const address = document.getElementById('address').value.trim();
+            const urlRegex = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/;
+            if (address && address.startsWith('http') && !urlRegex.test(address)) {
+                showError('address', 'رابط الموقع غير صالح');
                 isValid = false;
             }
             
@@ -489,10 +557,18 @@
             document.getElementById('summaryDevice').textContent = selectedDevice;
             document.getElementById('summaryName').textContent = document.getElementById('name').value;
             document.getElementById('summaryPhone').textContent = document.getElementById('phone').value;
-            document.getElementById('summaryAddress').textContent = document.getElementById('address').value;
+            
+            // تنسيق العنوان
+            const address = document.getElementById('address').value || 'غير محدد';
+            const summaryAddress = document.getElementById('summaryAddress');
+            if (address.startsWith('http')) {
+                summaryAddress.innerHTML = `<a href="${address}" target="_blank">عرض الموقع على خرائط جوجل</a>`;
+            } else {
+                summaryAddress.textContent = address;
+            }
+            
             document.getElementById('summaryDate').textContent = document.getElementById('appointmentDate').value;
             document.getElementById('summaryTime').textContent = document.getElementById('appointmentTime').value;
-            document.getElementById('summaryBrand').textContent = document.getElementById('brand').value || 'غير محدد';
             document.getElementById('summaryProblem').textContent = document.getElementById('problem').value || 'غير محدد';
             
             document.getElementById('successMessage').scrollIntoView({ 
@@ -507,10 +583,9 @@
                 deviceType: selectedDevice,
                 name: document.getElementById('name').value,
                 phone: document.getElementById('phone').value,
-                address: document.getElementById('address').value,
+                address: document.getElementById('address').value || 'غير محدد',
                 appointmentDate: document.getElementById('appointmentDate').value,
                 appointmentTime: document.getElementById('appointmentTime').value,
-                brand: document.getElementById('brand').value || 'غير محدد',
                 problem: document.getElementById('problem').value || 'غير محدد'
             };
             const text = `تأكيد الحجز\n\n` +
@@ -520,7 +595,6 @@
                          `العنوان: ${formData.address}\n` +
                          `التاريخ: ${formData.appointmentDate}\n` +
                          `الوقت: ${formData.appointmentTime}\n` +
-                         `الماركة: ${formData.brand}\n` +
                          `المشكلة: ${formData.problem}\n\n` +
                          `شكراً لاختيارك خدمة الصيانة المتخصصة!`;
             const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
@@ -538,10 +612,9 @@
                 deviceType: selectedDevice,
                 name: document.getElementById('name').value,
                 phone: document.getElementById('phone').value,
-                address: document.getElementById('address').value,
+                address: document.getElementById('address').value || 'غير محدد',
                 appointmentDate: document.getElementById('appointmentDate').value,
                 appointmentTime: document.getElementById('appointmentTime').value,
-                brand: document.getElementById('brand').value || 'غير محدد',
                 problem: document.getElementById('problem').value || 'غير محدد'
             };
             const text = `تأكيد حجز جديد:\n\n` +
@@ -551,7 +624,6 @@
                          `العنوان: ${formData.address}\n` +
                          `التاريخ: ${formData.appointmentDate}\n` +
                          `الوقت: ${formData.appointmentTime}\n` +
-                         `الماركة: ${formData.brand}\n` +
                          `المشكلة: ${formData.problem}`;
             const phoneNumber = '+201103631968';
             const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(text)}`;
@@ -584,7 +656,6 @@
                     address: document.getElementById('address').value,
                     appointmentDate: document.getElementById('appointmentDate').value,
                     appointmentTime: document.getElementById('appointmentTime').value,
-                    brand: document.getElementById('brand').value,
                     problem: document.getElementById('problem').value
                 };
                 
