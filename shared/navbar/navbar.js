@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Check token and toggle logout button
     const user = JSON.parse(localStorage.getItem('user'));
-    const logoutButton = document.getElementById('logoutButton'); // Fixed ID
+    const logoutButton = document.getElementById('logoutButton');
     if (logoutButton) {
         if (!user || !user.token) {
             logoutButton.style.display = 'none';
@@ -32,6 +32,18 @@ document.addEventListener('DOMContentLoaded', () => {
             logoutButton.style.display = 'block';
         }
     }
+
+    // Toggle navbar collapse on toggler click
+    const navbarToggler = document.querySelector('.navbar-toggler');
+    const navbarCollapse = document.querySelector('#navbarNav');
+
+    navbarToggler.addEventListener('click', () => {
+        // Toggle the 'show' class on the collapse element
+        navbarCollapse.classList.toggle('show');
+        // Update aria-expanded attribute
+        const isExpanded = navbarToggler.getAttribute('aria-expanded') === 'true';
+        navbarToggler.setAttribute('aria-expanded', !isExpanded);
+    });
 });
 
 // Logout function
