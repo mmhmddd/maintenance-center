@@ -21,7 +21,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer">
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Google Fonts for Tajawal -->
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -32,6 +31,9 @@
     <link rel="stylesheet" href="/shared/footer/footer.css">
     <link rel="shortcut icon" href="/assets/images/home/logo.png" type="image/x-icon">
 
+    <style>
+
+    </style>
 </head>
 <body>
     <div id="navbar-placeholder"></div>
@@ -39,7 +41,6 @@
     <section class="hero-section">
         <div class="hero-content">
             <img src="/assets/images/home/logo2.png" style="width: 200px; height: 200px;" alt="">
-
             <h1 class="hero-title">خدمة الصيانة المتخصصة</h1>
             <p class="hero-subtitle">احجز موعداً مع خبرائنا المعتمدين لصيانة جميع أجهزتك المنزلية بكفاءة عالية وسرعة فائقة</p>
             <p id="userInfo" style="display: none; color: var(--white); font-weight: 600;"></p>
@@ -82,7 +83,6 @@
                             <i class="fas fa-arrow-left"></i>
                         </button>
                     </div>
-
                     <div class="device-card h-100">
                         <i class="fas fa-cube device-icon"></i>
                         <h3 class="device-title">ثلاجات وفريزر</h3>
@@ -92,7 +92,6 @@
                             <i class="fas fa-arrow-left"></i>
                         </button>
                     </div>
-
                     <div class="device-card h-100">
                         <i class="fas fa-tshirt device-icon"></i>
                         <h3 class="device-title">غسالات</h3>
@@ -102,7 +101,6 @@
                             <i class="fas fa-arrow-left"></i>
                         </button>
                     </div>
-
                     <div class="device-card h-100">
                         <i class="fas fa-tools device-icon"></i>
                         <h3 class="device-title">أجهزة أخرى</h3>
@@ -131,36 +129,16 @@
                                     <i class="fas fa-user"></i> الاسم الكامل
                                 </label>
                                 <input type="text" id="name" name="name" class="form-control" placeholder="أدخل اسمك الكامل" autocomplete="name" required>
+                                <span id="name-error" class="error-message"></span>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="email" class="form-label">
-                                    <i class="fas fa-envelope"></i> البريد الإلكتروني
-                                </label>
-                                <input type="email" id="email" name="email" class="form-control" placeholder="example@email.com" autocomplete="email" required>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="phone" class="form-label">
                                     <i class="fas fa-phone"></i> رقم الهاتف
                                 </label>
-                                <input type="tel" id="phone" name="tel" class="form-control" placeholder="+9665xxxxxxxx" autocomplete="tel" required>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="city" class="form-label">
-                                    <i class="fas fa-map-marker-alt"></i> المدينة
-                                </label>
-                                <select id="city" name="address-level2" class="form-control" autocomplete="address-level2" required>
-                                    <option value="">اختر المدينة</option>
-                                    <option value="المدينة المنورة">المدينة المنورة</option>
-                                </select>
+                                <input type="tel" id="phone" name="tel" class="form-control" placeholder="05xxxxxxxx" autocomplete="tel" pattern="05[0-9]{8}" required>
+                                <span id="phone-error" class="error-message"></span>
                             </div>
                         </div>
                     </div>
@@ -170,6 +148,7 @@
                             <i class="fas fa-home"></i> العنوان التفصيلي
                         </label>
                         <input type="text" id="address" name="street-address" class="form-control" placeholder="الشارع، رقم المبنى، الحي" autocomplete="street-address" required>
+                        <span id="address-error" class="error-message"></span>
                     </div>
 
                     <div class="row">
@@ -179,6 +158,7 @@
                                     <i class="fas fa-calendar-alt"></i> تاريخ الموعد
                                 </label>
                                 <input type="date" id="appointmentDate" name="appointment-date" class="form-control" required>
+                                <span id="appointmentDate-error" class="error-message"></span>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -198,15 +178,16 @@
                                     <option value="16:00">4:00 مساءً</option>
                                     <option value="17:00">5:00 مساءً</option>
                                 </select>
+                                <span id="appointmentTime-error" class="error-message"></span>
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="brand" class="form-label">
-                            <i class="fas fa-tag"></i> ماركة الجهاز
+                            <i class="fas fa-tag"></i> ماركة الجهاز (اختياري)
                         </label>
-                        <select id="brand" name="brand" class="form-control" required>
+                        <select id="brand" name="brand" class="form-control">
                             <option value="">اختر الماركة</option>
                             <option value="سامسونج">سامسونج</option>
                             <option value="إل جي">إل جي</option>
@@ -221,9 +202,9 @@
 
                     <div class="form-group">
                         <label for="problem" class="form-label">
-                            <i class="fas fa-exclamation-triangle"></i> وصف المشكلة
+                            <i class="fas fa-exclamation-triangle"></i> وصف المشكلة (اختياري)
                         </label>
-                        <textarea id="problem" name="problem" class="form-control" rows="4" placeholder="اشرح المشكلة التي تواجهها مع الجهاز بالتفصيل..." required></textarea>
+                        <textarea id="problem" name="problem" class="form-control" rows="4" placeholder="اشرح المشكلة التي تواجهها مع الجهاز بالتفصيل..."></textarea>
                     </div>
 
                     <div class="form-actions">
@@ -244,16 +225,14 @@
                     <div class="success-checkmark">
                         <i class="fas fa-check" style="color: var(--gray-50); font-size: 2rem;"></i>
                     </div>
-                    <p style="color: var(--gray-600); margin-bottom: 1rem;"> سيتم التواصل معك خلال 24 ساعة لتأكيد الموعد بعد الضغط على تأكيد الحجز</p>
+                    <p style="color: var(--gray-600); margin-bottom: 1rem;">سيتم التواصل معك خلال 24 ساعة لتأكيد الموعد</p>
                     <div class="card border-0 shadow-md mb-4" style="background: var(--gray-50); border-radius: var(--border-radius-lg);">
                         <div class="card-body">
                             <h4 class="card-title" style="color: var(--primary-blue-light); font-size: var(--font-size-lg);">تفاصيل الحجز</h4>
                             <ul class="list-unstyled" style="color: var(--gray-600); font-size: var(--font-size-sm); text-align: right;">
                                 <li><strong>الجهاز:</strong> <span id="summaryDevice"></span></li>
                                 <li><strong>الاسم:</strong> <span id="summaryName"></span></li>
-                                <li><strong>البريد الإلكتروني:</strong> <span id="summaryEmail"></span></li>
                                 <li><strong>رقم الهاتف:</strong> <span id="summaryPhone"></span></li>
-                                <li><strong>المدينة:</strong> <span id="summaryCity"></span></li>
                                 <li><strong>العنوان:</strong> <span id="summaryAddress"></span></li>
                                 <li><strong>التاريخ:</strong> <span id="summaryDate"></span></li>
                                 <li><strong>الوقت:</strong> <span id="summaryTime"></span></li>
@@ -278,16 +257,18 @@
         </div>
     </main>
     <div id="footer-placeholder"></div>
+    <div id="loader-overlay" class="loader-overlay">
+        <div class="loader"></div>
+    </div>
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="booking.js"></script>
     <script>
         // Load Navbar
         fetch('/shared/navbar/navbar.html')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('navbar-placeholder').innerHTML = data;
-                checkTokenAfterNavbar(); // التحقق من التوكن بعد تحميل الـ navbar
+                checkTokenAfterNavbar();
             })
             .catch(error => console.error('خطأ في تحميل شريط التنقل:', error));
 
@@ -296,5 +277,366 @@
             .then(response => response.text())
             .then(data => document.getElementById('footer-placeholder').innerHTML = data)
             .catch(error => console.error('خطأ في تحميل تذييل الصفحة:', error));
-    </script>
 
+        let currentStep = 1;
+        let selectedDevice = '';
+        let selectedIcon = '';
+
+        // تهيئة الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            setMinDate();
+            updateStepIndicator();
+        });
+
+        // ضبط الحد الأدنى لتاريخ الموعد على الغد
+        function setMinDate() {
+            const today = new Date();
+            const tomorrow = new Date(today);
+            tomorrow.setDate(today.getDate() + 1);
+            const minDate = tomorrow.toISOString().split('T')[0];
+            document.getElementById('appointmentDate').setAttribute('min', minDate);
+        }
+
+        // تحديث مؤشر الخطوات
+        function updateStepIndicator() {
+            const steps = document.querySelectorAll('.step');
+            steps.forEach((step, index) => {
+                const stepNum = index + 1;
+                step.classList.remove('active', 'completed');
+                
+                if (stepNum < currentStep) {
+                    step.classList.add('completed');
+                    step.querySelector('.step-circle').innerHTML = '<i class="fas fa-check"></i>';
+                } else if (stepNum === currentStep) {
+                    step.classList.add('active');
+                    step.querySelector('.step-circle').textContent = stepNum;
+                } else {
+                    step.querySelector('.step-circle').textContent = stepNum;
+                }
+            });
+        }
+
+        // اختيار الجهاز وعرض النموذج
+        function selectDevice(deviceType, iconClass) {
+            selectedDevice = deviceType;
+            selectedIcon = iconClass;
+            
+            document.getElementById('selectedDeviceType').textContent = deviceType;
+            document.getElementById('selectedDeviceIcon').className = iconClass;
+            
+            document.getElementById('deviceSelection').style.display = 'none';
+            document.getElementById('bookingForm').classList.add('active');
+            document.getElementById('bookingForm').classList.remove('hidden');
+            document.getElementById('successMessage').classList.add('hidden');
+            
+            currentStep = 2;
+            updateStepIndicator();
+            
+            document.getElementById('bookingForm').scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'start' 
+            });
+        }
+
+        // العودة لاختيار الجهاز
+        function goBack() {
+            document.getElementById('bookingForm').classList.remove('active');
+            document.getElementById('bookingForm').classList.add('hidden');
+            document.getElementById('successMessage').classList.add('hidden');
+            document.getElementById('deviceSelection').style.display = 'block';
+            
+            currentStep = 1;
+            updateStepIndicator();
+            
+            document.querySelector('.hero-section').scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'start' 
+            });
+        }
+
+        // إعادة تعيين الكل
+        function resetAll() {
+            document.getElementById('successMessage').classList.add('hidden');
+            document.getElementById('bookingForm').classList.remove('active');
+            document.getElementById('bookingForm').classList.add('hidden');
+            document.getElementById('deviceSelection').style.display = 'block';
+            document.getElementById('mainForm').reset();
+            
+            // Clear all error messages
+            ['name', 'phone', 'address', 'appointmentDate', 'appointmentTime'].forEach(clearError);
+            
+            currentStep = 1;
+            updateStepIndicator();
+            
+            document.querySelector('.hero-section').scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'start' 
+            });
+        }
+
+        // عرض رسالة خطأ
+        function showError(inputId, message) {
+            const errorElement = document.getElementById(`${inputId}-error`);
+            errorElement.textContent = message;
+            errorElement.style.display = 'block';
+            document.getElementById(inputId).classList.add('error');
+        }
+
+        // إخفاء رسالة خطأ
+        function clearError(inputId) {
+            const errorElement = document.getElementById(`${inputId}-error`);
+            errorElement.textContent = '';
+            errorElement.style.display = 'none';
+            document.getElementById(inputId).classList.remove('error');
+        }
+
+        // التحقق من صحة النموذج
+        function validateForm() {
+            const requiredFields = [
+                { id: 'name', error: 'الاسم الكامل مطلوب' },
+                { id: 'phone', error: 'رقم الهاتف مطلوب' },
+                { id: 'address', error: 'العنوان التفصيلي مطلوب' },
+                { id: 'appointmentDate', error: 'تاريخ الموعد مطلوب' },
+                { id: 'appointmentTime', error: 'وقت الموعد مطلوب' }
+            ];
+            let isValid = true;
+            
+            // إزالة الأخطاء السابقة
+            requiredFields.forEach(field => clearError(field.id));
+            
+            requiredFields.forEach(field => {
+                const value = document.getElementById(field.id).value.trim();
+                if (!value) {
+                    showError(field.id, field.error);
+                    isValid = false;
+                }
+            });
+            
+            // التحقق من رقم الهاتف
+            const phone = document.getElementById('phone').value;
+            const phoneRegex = /^05[0-9]{8}$/;
+            if (phone && !phoneRegex.test(phone)) {
+                showError('phone', 'رقم الهاتف يجب أن يبدأ بـ 05 ويتكون من 10 أرقام');
+                isValid = false;
+            }
+            
+            // عرض رسالة خطأ عامة إذا كانت هناك أخطاء
+            if (!isValid) {
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'alert alert-danger';
+                errorDiv.textContent = 'يرجى ملء جميع الحقول المطلوبة بشكل صحيح';
+                
+                const existingError = document.querySelector('.alert-danger');
+                if (existingError) {
+                    existingError.remove();
+                }
+                
+                const form = document.getElementById('mainForm');
+                form.insertBefore(errorDiv, form.firstChild);
+                
+                errorDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                
+                setTimeout(() => {
+                    errorDiv.remove();
+                }, 5000);
+            }
+            
+            return isValid;
+        }
+
+        // عرض حالة التحميل
+        function showLoading(button) {
+            const btnText = button.querySelector('.btn-text');
+            const btnIcon = button.querySelector('i');
+            
+            btnText.textContent = 'جاري الإرسال...';
+            btnIcon.className = 'fas fa-spinner fa-spin';
+            button.disabled = true;
+        }
+
+        // إخفاء حالة التحميل
+        function hideLoading(button) {
+            const btnText = button.querySelector('.btn-text');
+            const btnIcon = button.querySelector('i');
+            
+            btnText.textContent = 'تأكيد الحجز';
+            btnIcon.className = 'fas fa-check';
+            button.disabled = false;
+        }
+
+        // عرض اللودر
+        function showLoader() {
+            document.getElementById('loader-overlay').style.display = 'flex';
+        }
+
+        // إخفاء اللودر
+        function hideLoader() {
+            document.getElementById('loader-overlay').style.display = 'none';
+        }
+
+        // عرض رسالة النجاح وملء بطاقة الملخص
+        function showSuccess() {
+            document.getElementById('deviceSelection').style.display = 'none';
+            document.getElementById('bookingForm').classList.remove('active');
+            document.getElementById('bookingForm').classList.add('hidden');
+            document.getElementById('successMessage').classList.remove('hidden');
+            document.getElementById('successMessage').classList.add('active');
+            
+            currentStep = 3;
+            updateStepIndicator();
+            
+            // ملء بطاقة الملخص
+            document.getElementById('summaryDevice').textContent = selectedDevice;
+            document.getElementById('summaryName').textContent = document.getElementById('name').value;
+            document.getElementById('summaryPhone').textContent = document.getElementById('phone').value;
+            document.getElementById('summaryAddress').textContent = document.getElementById('address').value;
+            document.getElementById('summaryDate').textContent = document.getElementById('appointmentDate').value;
+            document.getElementById('summaryTime').textContent = document.getElementById('appointmentTime').value;
+            document.getElementById('summaryBrand').textContent = document.getElementById('brand').value || 'غير محدد';
+            document.getElementById('summaryProblem').textContent = document.getElementById('problem').value || 'غير محدد';
+            
+            document.getElementById('successMessage').scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'start' 
+            });
+        }
+
+        // تحميل التأكيد كملف نصي
+        function downloadConfirmation() {
+            const formData = {
+                deviceType: selectedDevice,
+                name: document.getElementById('name').value,
+                phone: document.getElementById('phone').value,
+                address: document.getElementById('address').value,
+                appointmentDate: document.getElementById('appointmentDate').value,
+                appointmentTime: document.getElementById('appointmentTime').value,
+                brand: document.getElementById('brand').value || 'غير محدد',
+                problem: document.getElementById('problem').value || 'غير محدد'
+            };
+            const text = `تأكيد الحجز\n\n` +
+                         `الجهاز: ${formData.deviceType}\n` +
+                         `الاسم: ${formData.name}\n` +
+                         `رقم الهاتف: ${formData.phone}\n` +
+                         `العنوان: ${formData.address}\n` +
+                         `التاريخ: ${formData.appointmentDate}\n` +
+                         `الوقت: ${formData.appointmentTime}\n` +
+                         `الماركة: ${formData.brand}\n` +
+                         `المشكلة: ${formData.problem}\n\n` +
+                         `شكراً لاختيارك خدمة الصيانة المتخصصة!`;
+            const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'تأكيد_الحجز.txt';
+            link.click();
+            URL.revokeObjectURL(link.href);
+        }
+
+        // إرسال رسالة تأكيد لواتساب
+        function sendConfirmationMessage() {
+            showLoader();
+            const formData = {
+                deviceType: selectedDevice,
+                name: document.getElementById('name').value,
+                phone: document.getElementById('phone').value,
+                address: document.getElementById('address').value,
+                appointmentDate: document.getElementById('appointmentDate').value,
+                appointmentTime: document.getElementById('appointmentTime').value,
+                brand: document.getElementById('brand').value || 'غير محدد',
+                problem: document.getElementById('problem').value || 'غير محدد'
+            };
+            const text = `تأكيد حجز جديد:\n\n` +
+                         `الجهاز: ${formData.deviceType}\n` +
+                         `الاسم: ${formData.name}\n` +
+                         `رقم الهاتف: ${formData.phone}\n` +
+                         `العنوان: ${formData.address}\n` +
+                         `التاريخ: ${formData.appointmentDate}\n` +
+                         `الوقت: ${formData.appointmentTime}\n` +
+                         `الماركة: ${formData.brand}\n` +
+                         `المشكلة: ${formData.problem}`;
+            const phoneNumber = '+201103631968';
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(text)}`;
+            
+            setTimeout(() => {
+                window.open(whatsappUrl, '_blank');
+                hideLoader();
+            }, 1000);
+        }
+
+        // التعامل مع إرسال النموذج
+        document.getElementById('mainForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (!validateForm()) {
+                return;
+            }
+            
+            const submitBtn = document.querySelector('.btn-success');
+            showLoading(submitBtn);
+            
+            setTimeout(() => {
+                hideLoading(submitBtn);
+                showSuccess();
+                
+                const formData = {
+                    deviceType: selectedDevice,
+                    name: document.getElementById('name').value,
+                    phone: document.getElementById('phone').value,
+                    address: document.getElementById('address').value,
+                    appointmentDate: document.getElementById('appointmentDate').value,
+                    appointmentTime: document.getElementById('appointmentTime').value,
+                    brand: document.getElementById('brand').value,
+                    problem: document.getElementById('problem').value
+                };
+                
+                console.log('تم إرسال الحجز:', formData);
+            }, 2000);
+        });
+
+        // التحقق في الوقت الفعلي
+        document.addEventListener('input', function(e) {
+            if (e.target.classList.contains('form-control')) {
+                clearError(e.target.id);
+            }
+        });
+
+        // التمرير السلس للروابط الداخلية
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // التحقق من التوكن بعد تحميل الـ navbar
+        function checkTokenAfterNavbar() {
+            const user = JSON.parse(localStorage.getItem('user'));
+            const userInfo = document.getElementById('userInfo');
+            const logoutButton = document.getElementById('logoutButton');
+
+            if (!user || !user.token) {
+                if (userInfo) userInfo.style.display = 'none';
+                if (logoutButton) logoutButton.style.display = 'none';
+                window.location.href = `/auth/login/login.html?redirect=/pages/booking/booking.html`;
+            } else {
+                if (userInfo) {
+                    userInfo.style.display = 'block';
+                    userInfo.innerText = `مرحبًا ${user.name}!`;
+                }
+                if (logoutButton) logoutButton.style.display = 'block';
+            }
+        }
+
+        // دالة تسجيل الخروج
+        function logout() {
+            localStorage.removeItem('user');
+            window.location.href = '/index.html';
+        }
+    </script>
+</body>
+</html>

@@ -9,6 +9,33 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="shortcut icon" href="/assets/images/home/logo.png" type="image/x-icon">
 
+    <style>
+        .loader-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        .loader {
+            border: 4px solid var(--primary-blue);
+            border-top: 4px solid transparent;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+
     <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
@@ -49,97 +76,74 @@
             return '';
         }
 
-        function validatePassword(password) {
-            const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/;
-            if (!password || !passwordRegex.test(password)) {
-                return 'كلمة المرور يجب أن تحتوي على 8 أحرف على الأقل، بما في ذلك حرف ورقم';
-            }
-            return '';
+        function showLoader() {
+            document.getElementById('loader-overlay').style.display = 'flex';
+        }
+
+        function hideLoader() {
+            document.getElementById('loader-overlay').style.display = 'none';
         }
 
         window.login = async function() {
             const phone = document.getElementById('phone').value;
-            const password = document.getElementById('password').value;
 
             // Clear previous errors
             clearError('phone');
-            clearError('password');
 
-            // Validate inputs
-            let isValid = true;
+            // Validate input
             const phoneError = validatePhone(phone);
             if (phoneError) {
                 showError('phone', phoneError);
-                isValid = false;
-            }
-
-            const passwordError = validatePassword(password);
-            if (passwordError) {
-                showError('password', passwordError);
-                isValid = false;
-            }
-
-            if (!isValid) {
                 return;
             }
 
             try {
+                showLoader();
                 const q = query(collection(db, "users"), where("phone", "==", phone));
                 const querySnapshot = await getDocs(q);
                 if (!querySnapshot.empty) {
                     const userDoc = querySnapshot.docs[0].data();
-                    if (userDoc.password === password) {
-                        const token = Math.random().toString(36).substr(2) + Date.now().toString(36);
-                        const userData = {
-                            phone: phone,
-                            token: token,
-                            name: userDoc.name,
-                            address: userDoc.address
-                        };
-                        localStorage.setItem('user', JSON.stringify(userData));
+                    const token = Math.random().toString(36).substr(2) + Date.now().toString(36);
+                    const userData = {
+                        phone: phone,
+                        token: token,
+                        name: userDoc.name,
+                        address: userDoc.address
+                    };
+                    localStorage.setItem('user', JSON.stringify(userData));
 
-                        // Set timer to remove token after 2 minutes (120,000 ms)
-                        const timeoutId = setTimeout(() => {
-                            localStorage.removeItem('user');
-                            Toastify({
-                                text: 'جلستك انتهت، يرجى تسجيل الدخول مرة أخرى.',
-                                duration: 3000,
-                                gravity: 'top',
-                                position: 'right',
-                                backgroundColor: 'var(--error)',
-                                className: 'toast-error'
-                            }).showToast();
-                            window.location.href = '/auth/login/login.html';
-                        }, 120000);
-
+                    // Set timer to remove token after 2 minutes (120,000 ms)
+                    const timeoutId = setTimeout(() => {
+                        localStorage.removeItem('user');
                         Toastify({
-                            text: 'تم تسجيل الدخول بنجاح!',
+                            text: 'جلستك انتهت، يرجى تسجيل الدخول مرة أخرى.',
                             duration: 3000,
-                            gravity: 'top',
-                            position: 'right',
-                            backgroundColor: 'var(--success)',
-                            className: 'toast-success'
-                        }).showToast();
-
-                        const redirect = new URLSearchParams(window.location.search).get('redirect');
-                        setTimeout(() => {
-                            window.location.href = redirect || '/index.html';
-                        }, 3000);
-
-                        // Optional: Store timeoutId globally to clear it if needed
-                        window.logoutTimeout = timeoutId;
-                    } else {
-                        showError('password', 'كلمة المرور غير صحيحة');
-                        Toastify({
-                            text: 'كلمة المرور غير صحيحة!',
-                            duration: 5000,
                             gravity: 'top',
                             position: 'right',
                             backgroundColor: 'var(--error)',
                             className: 'toast-error'
                         }).showToast();
-                    }
+                        window.location.href = '/auth/login/login.html';
+                    }, 120000);
+
+                    Toastify({
+                        text: 'تم تسجيل الدخول بنجاح!',
+                        duration: 3000,
+                        gravity: 'top',
+                        position: 'right',
+                        backgroundColor: 'var(--success)',
+                        className: 'toast-success'
+                    }).showToast();
+
+                    const redirect = new URLSearchParams(window.location.search).get('redirect');
+                    setTimeout(() => {
+                        window.location.href = redirect || '/index.html';
+                    }, 3000);
+
+                    // Optional: Store timeoutId globally to clear it if needed
+                    window.logoutTimeout = timeoutId;
                 } else {
+                    hideLoader();
                     showError('phone', 'لا يوجد مستخدم بهذا الرقم');
                     Toastify({
                         text: 'لا يوجد مستخدم بهذا الرقم!',
@@ -151,6 +155,7 @@
                     }).showToast();
                 }
             } catch (error) {
+                hideLoader();
                 Toastify({
                     text: 'خطأ أثناء تسجيل الدخول: ' + error.message,
                     duration: 5000,
@@ -186,14 +191,12 @@
                 <input type="tel" id="phone" placeholder="أدخل رقم الهاتف" required>
                 <span id="phone-error" class="error-message"></span>
             </div>
-            <div class="form-group">
-                <label for="password">كلمة المرور</label>
-                <input type="password" id="password" placeholder="أدخل كلمة المرور" required>
-                <span id="password-error" class="error-message"></span>
-            </div>
             <button onclick="login()" class="login-btn">تسجيل الدخول</button>
             <p class="register-link">ليس لديك حساب؟ <a href="/auth/register/register.html">إنشاء حساب جديد</a></p>
         </div>
+    </div>
+    <div id="loader-overlay" class="loader-overlay">
+        <div class="loader"></div>
     </div>
 </body>
 </html>

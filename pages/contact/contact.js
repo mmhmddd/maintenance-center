@@ -79,7 +79,6 @@
 
                 const fieldStates = {
                     name: { impure: false, valid: false },
-                    email: { impure: false, valid: false },
                     phone: { impure: false, valid: false },
                     subject: { impure: false, valid: false },
                     message: { impure: false, valid: false }
@@ -109,18 +108,6 @@
                         if (!value.trim()) return 'يرجى إدخال اسمك الكامل';
                         if (value.trim().length < 2) return 'الاسم قصير جداً';
                         if (!/^[\u0600-\u06FF\s]+$/.test(value.trim())) return 'يرجى إدخال اسم صحيح بالعربية';
-                        return null;
-                    },
-                    email: (value) => {
-                        if (!value.trim()) return 'يرجى إدخال البريد الإلكتروني';
-                        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                        if (!emailRegex.test(value)) return 'يرجى إدخال بريد إلكتروني صحيح';
-                        return null;
-                    },
-                    phone: (value) => {
-                        if (!value.trim()) return 'يرجى إدخال رقم الهاتف';
-                        const phoneRegex = /^\+?[1-9]\d{1,14}$/;
-                        if (!phoneRegex.test(value.replace(/\s/g, ''))) return 'يرجى إدخال رقم هاتف صحيح';
                         return null;
                     },
                     subject: (value) => {
@@ -243,7 +230,6 @@
                         const message = `
                             رسالة جديدة من النموذج:
                             الاسم: ${formData.get('name')}
-                            البريد الإلكتروني: ${formData.get('email')}
                             رقم الهاتف: ${formData.get('phone')}
                             الموضوع: ${formData.get('subject')}
                             الرسالة: ${formData.get('message')}
@@ -303,21 +289,7 @@
                     }, 5000);
                 }
 
-                // Phone number formatting
-                const phoneInput = document.getElementById('phone');
-                phoneInput.addEventListener('input', function(e) {
-                    let value = e.target.value.replace(/\D/g, '');
-                    if (value.startsWith('20') && value.length > 2) {
-                        value = '+' + value;
-                    } else if (value.startsWith('966')) {
-                        value = '+' + value;
-                    } else if (value.startsWith('05')) {
-                        value = '+966' + value.substring(1);
-                    } else if (value.startsWith('5') && value.length <= 9) {
-                        value = '+966' + value;
-                    }
-                    e.target.value = value;
-                });
+
 
                 // Character counter for message
                 const messageInput = document.getElementById('message');

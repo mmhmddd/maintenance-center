@@ -9,6 +9,33 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="shortcut icon" href="/assets/images/home/logo.png" type="image/x-icon">
 
+    <style>
+        .loader-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        .loader {
+            border: 4px solid var(--primary-blue);
+            border-top: 4px solid transparent;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+
     <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
@@ -49,26 +76,23 @@
         }
 
         function validatePhone(phone) {
-            const phoneRegex = /^(\+9665[0-9]{8}|05[0-9]{8})$/;
+            const phoneRegex = /^05[0-9]{8}$/;
             if (!phone || !phoneRegex.test(phone)) {
-                return 'رقم الهاتف يجب أن يكون صالحًا (مثال: +9665XXXXXXXX أو 05XXXXXXXX)';
+                return 'رقم الهاتف يجب أن يبدأ بـ 05 ويتكون من 10 أرقام';
             }
             return '';
         }
 
-        function validateAddress(address) {
-            if (!address || address.trim().length < 5) {
-                return 'العنوان يجب أن يكون على الأقل 5 أحرف';
-            }
-            return '';
+        function generateToken() {
+            return Math.random().toString(36).substr(2) + Date.now().toString(36);
         }
 
-        function validatePassword(password) {
-            const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/;
-            if (!password || !passwordRegex.test(password)) {
-                return 'كلمة المرور يجب أن تحتوي على 8 أحرف على الأقل، بما في ذلك حرف ورقم';
-            }
-            return '';
+        function showLoader() {
+            document.getElementById('loader-overlay').style.display = 'flex';
+        }
+
+        function hideLoader() {
+            document.getElementById('loader-overlay').style.display = 'none';
         }
 
         async function checkPhoneExists(phone) {
@@ -79,15 +103,17 @@
 
         window.register = async function() {
             const name = document.getElementById('name').value;
-            const phone = document.getElementById('phone').value;
-            const address = document.getElementById('address').value;
-            const password = document.getElementById('password').value;
+            let phone = document.getElementById('phone').value;
+
+            // Format phone number
+            phone = phone.replace(/[^0-9]/g, '');
+            if (!phone.startsWith('05')) {
+                phone = '05' + phone;
+            }
 
             // Clear previous errors
             clearError('name');
             clearError('phone');
-            clearError('address');
-            clearError('password');
 
             // Validate inputs
             let isValid = true;
@@ -103,26 +129,16 @@
                 isValid = false;
             }
 
-            const addressError = validateAddress(address);
-            if (addressError) {
-                showError('address', addressError);
-                isValid = false;
-            }
-
-            const passwordError = validatePassword(password);
-            if (passwordError) {
-                showError('password', passwordError);
-                isValid = false;
-            }
-
             if (!isValid) {
                 return;
             }
 
             // Check phone number uniqueness
             try {
+                showLoader();
                 const phoneExists = await checkPhoneExists(phone);
                 if (phoneExists) {
+                    hideLoader();
                     showError('phone', 'رقم الهاتف مسجل مسبقًا');
                     Toastify({
                         text: 'رقم الهاتف مسجل مسبقًا!',
@@ -136,14 +152,17 @@
                 }
 
                 const userId = Math.random().toString(36).substr(2, 9);
+                const token = generateToken();
 
                 await setDoc(doc(db, "users", userId), {
                     name: name,
                     phone: phone,
-                    address: address,
-                    password: password,
                     createdAt: new Date()
                 });
+
+                // Save token to localStorage
+                localStorage.setItem('userToken', token);
+                localStorage.setItem('userId', userId);
 
                 Toastify({
                     text: 'تم تسجيل البيانات بنجاح!',
@@ -157,6 +176,7 @@
                     window.location.href = '/auth/login/login.html';
                 }, 3000);
             } catch (error) {
+                hideLoader();
                 Toastify({
                     text: 'خطأ في حفظ البيانات: ' + error.message,
                     duration: 5000,
@@ -187,22 +207,15 @@
             </div>
             <div class="form-group">
                 <label for="phone">رقم الهاتف</label>
-                <input type="tel" id="phone" placeholder="أدخل رقم الهاتف" required>
+                <input type="tel" id="phone" placeholder="05XXXXXXXX" pattern="05[0-9]{8}" required>
                 <span id="phone-error" class="error-message"></span>
-            </div>
-            <div class="form-group">
-                <label for="address">العنوان</label>
-                <input type="text" id="address" placeholder="أدخل العنوان" required>
-                <span id="address-error" class="error-message"></span>
-            </div>
-            <div class="form-group">
-                <label for="password">كلمة المرور</label>
-                <input type="password" id="password" placeholder="أدخل كلمة المرور" required>
-                <span id="password-error" class="error-message"></span>
             </div>
             <button onclick="register()" class="register-btn">تسجيل</button>
             <p class="login-link">لديك حساب؟ <a href="/auth/login/login.html">تسجيل الدخول</a></p>
         </div>
+    </div>
+    <div id="loader-overlay" class="loader-overlay">
+        <div class="loader"></div>
     </div>
 </body>
 </html>
