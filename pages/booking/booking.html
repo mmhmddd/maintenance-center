@@ -263,13 +263,15 @@
                     </div>
 
                     <div class="form-actions">
-                        <button type="submit" class="btn btn-success">
-                            <span class="btn-text">تأكيد الحجز</span>
-                            <i class="fas fa-check"></i>
-                        </button>
-                        <button type="button" class="btn btn-secondary" onclick="goBack()">
-                            <i class="fas fa-arrow-right"></i> العودة
-                        </button>
+                        <div class="d-flex justify-content-center gap-3 mb-4">
+                            <button class="btn btn-primary" onclick="resetAll()">
+                                <i class="fas fa-plus"></i> حجز جديد
+                            </button>
+
+                            <button class="btn btn-success" onclick="sendConfirmationMessage()">
+                                <i class="fas fa-paper-plane"></i> تأكيد 
+                            </button>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -335,12 +337,18 @@
         let currentStep = 1;
         let selectedDevice = '';
         let selectedIcon = '';
+        let formData = null; // Store form data for success message
 
         // تهيئة الصفحة
         document.addEventListener('DOMContentLoaded', function() {
             setMinDate();
             updateStepIndicator();
             updateMapPreview();
+            // Check if returning from WhatsApp
+            if (sessionStorage.getItem('bookingSent')) {
+                showSuccess();
+                sessionStorage.removeItem('bookingSent');
+            }
         });
 
         // ضبط الحد الأدنى لتاريخ الموعد على الغد
@@ -482,6 +490,7 @@
                 behavior: 'smooth', 
                 block: 'start' 
             });
+            sessionStorage.removeItem('bookingSent');
         }
 
         // عرض رسالة خطأ
@@ -656,8 +665,12 @@
 
         // إرسال رسالة تأكيد لواتساب
         function sendConfirmationMessage() {
+            if (!validateForm()) {
+                return;
+            }
+            
             showLoader();
-            const formData = {
+            formData = {
                 deviceType: selectedDevice,
                 name: document.getElementById('name').value,
                 phone: document.getElementById('phone').value,
@@ -677,6 +690,9 @@
             const phoneNumber = '+966577659202';
             const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(text)}`;
             
+            // Store a flag to indicate booking was sent
+            sessionStorage.setItem('bookingSent', 'true');
+            
             setTimeout(() => {
                 window.open(whatsappUrl, '_blank');
                 hideLoader();
@@ -686,30 +702,10 @@
         // التعامل مع إرسال النموذج
         document.getElementById('mainForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            
-            if (!validateForm()) {
-                return;
-            }
-            
-            const submitBtn = document.querySelector('.btn-success');
+            const submitBtn = document.getElementById('submit_the_booking');
             showLoading(submitBtn);
-            
-            setTimeout(() => {
-                hideLoading(submitBtn);
-                showSuccess();
-                
-                const formData = {
-                    deviceType: selectedDevice,
-                    name: document.getElementById('name').value,
-                    phone: document.getElementById('phone').value,
-                    address: document.getElementById('address').value,
-                    appointmentDate: document.getElementById('appointmentDate').value,
-                    appointmentTime: document.getElementById('appointmentTime').value,
-                    problem: document.getElementById('problem').value
-                };
-                
-                console.log('تم إرسال الحجز:', formData);
-            }, 2000);
+            sendConfirmationMessage();
+            hideLoading(submitBtn);
         });
 
         // التحقق في الوقت الفعلي
