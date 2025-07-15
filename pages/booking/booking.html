@@ -117,7 +117,7 @@
                 <div class="step-circle">2</div>
                 <div class="step-label">املأ البيانات</div>
             </div>
-            <div class="step" id="step3">
+            <div (click)="navigateToStep(3)" class="step" id="step3">
                 <div class="step-circle">3</div>
                 <div class="step-label">تأكيد الحجز</div>
             </div>
@@ -268,8 +268,8 @@
                                 <i class="fas fa-plus"></i> حجز جديد
                             </button>
 
-                            <button class="btn btn-success" onclick="sendConfirmationMessage()">
-                                <i class="fas fa-paper-plane"></i> تأكيد 
+                            <button type="button" class="btn btn-success" onclick="sendConfirmationMessage()">
+                                <i class="fas fa-paper-plane"></i> تأكيد
                             </button>
                         </div>
                     </div>
@@ -304,9 +304,9 @@
                         <button class="btn btn-secondary" onclick="downloadConfirmation()">
                             <i class="fas fa-download"></i> تحميل التأكيد
                         </button>
-                        <button class="btn btn-success" onclick="sendConfirmationMessage()">
+                        <a id="whatsappLink" href="#" class="btn btn-success">
                             <i class="fas fa-paper-plane"></i> إرسال عبر واتساب
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -572,7 +572,7 @@
 
         // عرض حالة التحميل
         function showLoading(button) {
-            const btnText = button.querySelector('.btn-text');
+            const btnText = button.querySelector('.btn-text') || button;
             const btnIcon = button.querySelector('i');
             
             btnText.textContent = 'جاري الإرسال...';
@@ -582,11 +582,11 @@
 
         // إخفاء حالة التحميل
         function hideLoading(button) {
-            const btnText = button.querySelector('.btn-text');
+            const btnText = button.querySelector('.btn-text') || button;
             const btnIcon = button.querySelector('i');
             
-            btnText.textContent = 'تأكيد الحجز';
-            btnIcon.className = 'fas fa-check';
+            btnText.textContent = 'تأكيد';
+            btnIcon.className = 'fas fa-paper-plane';
             button.disabled = false;
         }
 
@@ -669,40 +669,64 @@
                 return;
             }
             
-            showLoader();
-            formData = {
-                deviceType: selectedDevice,
-                name: document.getElementById('name').value,
-                phone: document.getElementById('phone').value,
-                address: document.getElementById('address').value || 'غير محدد',
-                appointmentDate: document.getElementById('appointmentDate').value,
-                appointmentTime: document.getElementById('appointmentTime').value,
-                problem: document.getElementById('problem').value || 'غير محدد'
-            };
-            const text = `تأكيد حجز جديد:\n\n` +
-                         `الجهاز: ${formData.deviceType}\n` +
-                         `الاسم: ${formData.name}\n` +
-                         `رقم الهاتف: ${formData.phone}\n` +
-                         `العنوان: ${formData.address}\n` +
-                         `التاريخ: ${formData.appointmentDate}\n` +
-                         `الوقت: ${formData.appointmentTime}\n` +
-                         `المشكلة: ${formData.problem}`;
-            const phoneNumber = '+966577659202';
-            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(text)}`;
-            
-            // Store a flag to indicate booking was sent
-            sessionStorage.setItem('bookingSent', 'true');
-            
-            setTimeout(() => {
-                window.open(whatsappUrl, '_blank');
+            try {
+                showLoader();
+                formData = {
+                    deviceType: selectedDevice,
+                    name: document.getElementById('name').value,
+                    phone: document.getElementById('phone').value,
+                    address: document.getElementById('address').value || 'غير محدد',
+                    appointmentDate: document.getElementById('appointmentDate').value,
+                    appointmentTime: document.getElementById('appointmentTime').value,
+                    problem: document.getElementById('problem').value || 'غير محدد'
+                };
+                
+                const text = `تأكيد حجز جديد:\n\n` +
+                             `الجهاز: ${formData.deviceType}\n` +
+                             `الاسم: ${formData.name}\n` +
+                             `رقم الهاتف: ${formData.phone}\n` +
+                             `العنوان: ${formData.address}\n` +
+                             `التاريخ: ${formData.appointmentDate}\n` +
+                             `الوقت: ${formData.appointmentTime}\n` +
+                             `المشكلة: ${formData.problem}`;
+                const phoneNumber = '+966577659202';
+                const encodedText = encodeURIComponent(text);
+                const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedText}`;
+                
+                // Update the href of the WhatsApp link in the success message
+                const whatsappLink = document.getElementById('whatsappLink');
+                whatsappLink.setAttribute('href', whatsappUrl);
+                
+                // Store a flag to indicate booking was sent
+                sessionStorage.setItem('bookingSent', 'true');
+                
+                // Attempt to open WhatsApp directly
+                window.location.href = whatsappUrl;
+                
+                // Fallback in case window.location.href fails
+                setTimeout(() => {
+                    const link = document.createElement('a');
+                    link.href = whatsappUrl;
+                    link.target = '_blank';
+                    link.click();
+                    hideLoader();
+                    showSuccess();
+                }, 500);
+            } catch (error) {
+                console.error('خطأ في إرسال رسالة واتساب:', error);
                 hideLoader();
-            }, 1000);
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'alert alert-danger';
+                errorDiv.textContent = 'حدث خطأ أثناء محاولة إرسال الرسالة عبر واتساب. يرجى المحاولة مرة أخرى.';
+                document.getElementById('mainForm').prepend(errorDiv);
+                setTimeout(() => errorDiv.remove(), 5000);
+            }
         }
 
         // التعامل مع إرسال النموذج
         document.getElementById('mainForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            const submitBtn = document.getElementById('submit_the_booking');
+            const submitBtn = document.querySelector('#mainForm .btn-success');
             showLoading(submitBtn);
             sendConfirmationMessage();
             hideLoading(submitBtn);
