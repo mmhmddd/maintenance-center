@@ -490,10 +490,12 @@ body {
     .about-section {
         padding: 3rem 0;
     }
-    
-    .taller-card {
-        margin-top: 0;
-        min-height: 450px;
+
+    .about-card{
+        border: 1px solid var(--yellow);
+    }
+    .taller-card{
+        border: 1px solid var(--yellow) !important;
     }
     
     .work-grid {

@@ -20,11 +20,11 @@
 
     /* Typography and Layout */
     --font-family: 'Tajawal', sans-serif;
-    --font-size-base: 1.1rem; /* Increased from 1rem */
-    --font-size-large: 1.25rem;
-    --font-size-small: 0.875rem;
-    --font-size-xl: 2.5rem;
-    --font-size-lg: 2rem;
+    --font-size-base: 1.3rem; /* Increased from 1rem */
+    --font-size-large: 1.45rem;
+    --font-size-small: 1.175rem;
+    --font-size-xl: 3rem;
+    --font-size-lg: 2.5rem;
 
     /* Spacing */
     --spacing-xs: 0.5rem;
@@ -67,12 +67,13 @@ body, html {
 .hero-section {
     background: linear-gradient(135deg, var(--primary-blue) 0%, var(--blue-dark) 100%);
     color: var(--white);
-    padding: var(--spacing-lg) 0 0 0; /* Adjusted to remove bottom padding */
+    padding: 45px; 
     text-align: center;
     position: relative;
     overflow: hidden;
     max-width: 100%;
-    margin-top: 0; /* Explicitly no top margin */
+    margin-top: -50px;
+
 }
 
 .hero-section::before {
@@ -547,7 +548,7 @@ select.is-invalid ~ .invalid-feedback {
 
     .hero-section {
         padding: var(--spacing-sm) 0 0 0; /* Reduced top padding */
-        margin-top: 0;
+        margin-top: -40px;
     }
 
     .hero-title {
@@ -562,7 +563,6 @@ select.is-invalid ~ .invalid-feedback {
 
     .section-title {
         font-size: calc(var(--font-size-base) * 1.1); /* Adjusted for readability */
-        flex-direction: column;
         text-align: center;
         margin-top: var(--spacing-sm);
         padding: var(--spacing-xs) 0;
@@ -665,7 +665,6 @@ select.is-invalid ~ .invalid-feedback {
 @media (max-width: 576px) {
     .hero-section {
         padding: var(--spacing-xs) 0 0 0; /* Further reduced */
-        margin-top: 0;
     }
 
     .hero-title {
