@@ -1,8 +1,10 @@
+/* Footer Styles */
 .footer {
     background-color: var(--gray-dark);
     color: var(--white);
-    font-family: var(--font-family);
+    font-family: 'Tajawal', sans-serif;
     direction: rtl;
+    padding: 3rem 0; /* Adjusted padding for consistency */
 }
 
 .footer-link {
@@ -30,14 +32,92 @@
 hr {
     border-color: var(--gray-light);
     opacity: 0.5;
+    margin: 2rem 0;
 }
 
+/* Mobile Styles */
 @media (max-width: 767.98px) {
     .footer .col-md-6,
     .footer .col-lg-4 {
         text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
-    .social-icons {
+
+    /* Center logo and title */
+    .footer .d-flex {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer .d-flex img {
+        margin: 0 auto 10px auto !important; /* Override inline margin */
+    }
+
+    .footer .d-flex h5 {
+        margin: 0;
+    }
+
+    /* Center quick links */
+    .footer ul.list-unstyled {
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer ul.list-unstyled li {
+        margin-bottom: 10px;
+    }
+
+    /* Center contact info */
+    .footer .contact-info ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer .contact-info li {
+        display: flex;
         justify-content: center;
+        align-items: center;
+    }
+
+    /* Center social icons */
+    .social-icons {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    /* Ensure copyright text is centered */
+    .footer .text-center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+/* Desktop Styles for Consistency */
+@media (min-width: 768px) {
+    .footer .d-flex {
+        justify-content: flex-start;
+    }
+
+    .footer ul.list-unstyled {
+        padding: 0;
+    }
+
+    .footer .contact-info ul {
+        padding: 0;
+    }
+
+    .social-icons {
+        display: flex;
+        justify-content: flex-start;
+        gap: 15px;
     }
 }
