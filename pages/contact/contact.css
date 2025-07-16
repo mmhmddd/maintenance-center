@@ -20,7 +20,7 @@
 
     /* Typography and Layout */
     --font-family: 'Tajawal', sans-serif;
-    --font-size-base: 1rem;
+    --font-size-base: 1.1rem; /* Increased from 1rem */
     --font-size-large: 1.25rem;
     --font-size-small: 0.875rem;
     --font-size-xl: 2.5rem;
@@ -53,24 +53,26 @@
     box-sizing: border-box;
 }
 
-body {
+body, html {
     font-family: var(--font-family);
     background-color: var(--gray-light);
     color: var(--gray-dark);
     line-height: 1.6;
     direction: rtl;
-    overflow-x: hidden; /* Prevent horizontal scroll on body */
+    overflow-x: hidden;
+    margin-top: 0; /* Ensure no top margin */
 }
 
 /* Hero Section */
 .hero-section {
     background: linear-gradient(135deg, var(--primary-blue) 0%, var(--blue-dark) 100%);
     color: var(--white);
-    padding: var(--spacing-lg) 0;
+    padding: var(--spacing-lg) 0 0 0; /* Adjusted to remove bottom padding */
     text-align: center;
     position: relative;
     overflow: hidden;
-    max-width: 100%; /* Ensure hero stays within viewport */
+    max-width: 100%;
+    margin-top: 0; /* Explicitly no top margin */
 }
 
 .hero-section::before {
@@ -88,7 +90,7 @@ body {
 .hero-content {
     position: relative;
     z-index: 2;
-    max-width: 100%; /* Prevent content overflow */
+    max-width: 100%;
 }
 
 .hero-title {
@@ -110,7 +112,7 @@ body {
 main {
     padding: var(--spacing-lg) 0;
     max-width: 100%;
-    overflow-x: hidden; /* Prevent horizontal scroll */
+    overflow-x: hidden;
 }
 
 .section-title {
@@ -119,13 +121,14 @@ main {
     color: var(--primary-blue);
     margin-bottom: var(--spacing-lg);
     display: flex;
-    align-items: center;
+    align-items: start;
     gap: var(--spacing-xs);
     margin-top: 20px;
 }
+
 .section-title::after {
     content: '';
-    flex: 0 0 80px; /* Reduced width to prevent overflow */
+    flex: 0 0 80px;
     height: 2px;
     background: linear-gradient(90deg, var(--primary-blue), transparent);
     margin-right: var(--spacing-sm);
@@ -146,8 +149,8 @@ main {
     margin-bottom: var(--spacing-sm);
     border: 1px solid var(--gray-lighter);
     justify-content: center;
-    max-width: 100%; /* Prevent overflow */
-    overflow: hidden; /* Contain content */
+    max-width: 100%;
+    overflow: hidden;
 }
 
 .contact-item:hover {
@@ -161,12 +164,12 @@ main {
     margin-left: var(--spacing-xs);
     width: 25px;
     text-align: center;
-    flex-shrink: 0; /* Prevent icon from shrinking */
+    flex-shrink: 0;
 }
 
 .contact-item div {
     font-size: var(--font-size-small);
-    word-break: break-word; /* Break long text like email */
+    word-break: break-word;
 }
 
 .contact-item a {
@@ -242,14 +245,14 @@ main {
     background: var(--white);
     border-radius: var(--border-radius-lg);
     box-shadow: var(--shadow-md);
-    overflow-x: auto; /* Allow scroll if needed, but constrain content */
+    overflow-x: auto;
 }
 
 .table {
     margin-bottom: 0;
     text-align: right;
     width: 100%;
-    table-layout: auto; /* Allow table to adjust to content */
+    table-layout: auto;
 }
 
 .table th {
@@ -259,7 +262,7 @@ main {
     padding: var(--spacing-sm);
     border: none;
     font-size: var(--font-size-small);
-    white-space: nowrap; /* Prevent header wrapping */
+    white-space: nowrap;
 }
 
 .table td {
@@ -267,7 +270,7 @@ main {
     border-color: var(--gray-lighter);
     vertical-align: middle;
     font-size: var(--font-size-small);
-    word-break: break-word; /* Break long text */
+    word-break: break-word;
 }
 
 .table tbody tr:nth-child(even) {
@@ -332,7 +335,7 @@ main {
     transition: var(--transition-fast);
     background: var(--white);
     width: 100%;
-    max-width: 100%; /* Prevent input overflow */
+    max-width: 100%;
 }
 
 .form-control:focus {
@@ -523,26 +526,28 @@ select.is-invalid ~ .invalid-feedback {
 
 /* Bootstrap Row Fix */
 .row {
-    margin-left: 0; /* Remove Bootstrap's negative margins */
+    margin-left: 0;
     margin-right: 0;
     max-width: 100%;
-    overflow-x: hidden; /* Prevent row overflow */
+    overflow-x: hidden;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
     body, html {
-        overflow-x: hidden; /* Reinforce no horizontal scroll */
+        overflow-x: hidden;
+        margin-top: 0 !important; /* Override browser defaults */
     }
 
     .container {
-        padding-left: var(--spacing-xs); /* Reduce container padding */
+        padding-left: var(--spacing-xs);
         padding-right: var(--spacing-xs);
-        max-width: 100%; /* Ensure container fits viewport */
+        max-width: 100%;
     }
 
     .hero-section {
-        padding: var(--spacing-md) 0;
+        padding: var(--spacing-sm) 0 0 0; /* Reduced top padding */
+        margin-top: 0;
     }
 
     .hero-title {
@@ -556,15 +561,18 @@ select.is-invalid ~ .invalid-feedback {
     }
 
     .section-title {
-        font-size: calc(var(--font-size-base) * 0.9);
+        font-size: calc(var(--font-size-base) * 1.1); /* Adjusted for readability */
         flex-direction: column;
         text-align: center;
-        margin-top: 25px;
+        margin-top: var(--spacing-sm);
+        padding: var(--spacing-xs) 0;
+        justify-content: center;
     }
 
     .section-title::after {
-        flex: 0 0 60px; /* Further reduce line width */
-        margin: var(--spacing-xs) 0 0 0;
+        flex: 0 0 80px;
+        margin: var(--spacing-xs) auto 0 auto; /* Center the line */
+        height: 3px; /* Thicker for emphasis */
     }
 
     .contact-item {
@@ -602,19 +610,19 @@ select.is-invalid ~ .invalid-feedback {
     }
 
     .working-hours {
-        overflow-x: auto; /* Allow scroll if needed, but constrain content */
+        overflow-x: auto;
     }
 
     .table {
-        table-layout: auto; /* Allow dynamic column sizing */
+        table-layout: auto;
         width: 100%;
-        min-width: 0; /* Remove min-width to fit viewport */
+        min-width: 0;
     }
 
     .table th, .table td {
         padding: var(--spacing-xs);
         font-size: calc(var(--font-size-small) * 0.85);
-        white-space: normal; /* Allow text wrapping */
+        white-space: normal;
     }
 
     .contact-form {
@@ -656,7 +664,8 @@ select.is-invalid ~ .invalid-feedback {
 
 @media (max-width: 576px) {
     .hero-section {
-        padding: var(--spacing-sm) 0;
+        padding: var(--spacing-xs) 0 0 0; /* Further reduced */
+        margin-top: 0;
     }
 
     .hero-title {
@@ -668,11 +677,15 @@ select.is-invalid ~ .invalid-feedback {
     }
 
     .section-title {
-        font-size: calc(var(--font-size-small) * 0.9);
+        font-size: calc(var(--font-size-base) * 1); /* Adjusted */
+        margin-top: var(--spacing-xs);
+        padding: var(--spacing-xs) 0;
     }
 
     .section-title::after {
-        flex: 0 0 50px; /* Further reduce line width */
+        flex: 0 0 60px;
+        margin: var(--spacing-xs) auto 0 auto;
+        height: 3px;
     }
 
     .contact-item {
