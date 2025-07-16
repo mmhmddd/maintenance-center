@@ -114,16 +114,15 @@ main {
 }
 
 .section-title {
-    font-size: var(--font-size-base);
+    font-size: var(--font-size-large);
     font-weight: 600;
     color: var(--primary-blue);
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
     display: flex;
     align-items: center;
     gap: var(--spacing-xs);
-    justify-content: center;
+    margin-top: 20px;
 }
-
 .section-title::after {
     content: '';
     flex: 0 0 80px; /* Reduced width to prevent overflow */
@@ -560,6 +559,7 @@ select.is-invalid ~ .invalid-feedback {
         font-size: calc(var(--font-size-base) * 0.9);
         flex-direction: column;
         text-align: center;
+        margin-top: 25px;
     }
 
     .section-title::after {
@@ -797,9 +797,4 @@ textarea.form-control.is-invalid {
     height: 1.2em;
     animation: spin 1s linear infinite;
     margin-right: 0.5em;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
 }
